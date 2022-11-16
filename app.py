@@ -1,7 +1,30 @@
 from flask import *
+from mysql.connector import pooling
+# 匯入 blueprint
+from attraction.attraction import attraction
+from attraction.attraction_id import attraction_id
+from attraction.attraction_categories import attraction_categories
+
 app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
 app.config["TEMPLATES_AUTO_RELOAD"] = True
+
+
+# 使用 register_blueprint 方法將 blueprint 註冊到 app
+app.register_blueprint(attraction)
+app.register_blueprint(attraction_id)
+app.register_blueprint(attraction_categories)
+
+
+connection_pool = pooling.MySQLConnectionPool(
+    pool_name="connection_pool",
+    pool_size=5,
+    pool_reset_session=True,
+    host="localhost",
+    user="root",
+    password="123456",
+    database="db"
+)
 
 # Pages
 
@@ -26,4 +49,4 @@ def thankyou():
     return render_template("thankyou.html")
 
 
-app.run(port=3000)
+app.run(port=3000, debug=True)
