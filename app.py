@@ -15,17 +15,6 @@ app.register_blueprint(attraction)
 app.register_blueprint(attraction_id)
 app.register_blueprint(attraction_categories)
 
-
-connection_pool = pooling.MySQLConnectionPool(
-    pool_name="connection_pool",
-    pool_size=5,
-    pool_reset_session=True,
-    host="localhost",
-    user="root",
-    password="123456",
-    database="db"
-)
-
 # Pages
 
 
