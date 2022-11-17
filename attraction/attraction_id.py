@@ -16,7 +16,7 @@ connection_pool = pooling.MySQLConnectionPool(
 
 
 # 根據景點編號取得景點
-@attraction_id.route("/api/attractions/<attractionId>")
+@attraction_id.route("/api/attraction/<attractionId>")
 def attractionsId(attractionId):
     try:
         connection_object = connection_pool.get_connection()
