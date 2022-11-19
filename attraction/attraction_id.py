@@ -1,22 +1,10 @@
 from flask import *
-from mysql.connector import pooling
-# nev 隱藏敏感資訊
-import os
-from dotenv import load_dotenv
-load_dotenv()
+import data.data_connection
 
 # 建立 Blueprint 物件
 attraction_id = Blueprint("attraction_id", __name__)
 
-connection_pool = pooling.MySQLConnectionPool(
-    pool_name="connection_pool",
-    pool_size=5,
-    pool_reset_session=True,
-    host=os.getenv("host"),
-    user=os.getenv("user"),
-    password=os.getenv("password"),
-    database=os.getenv("database")
-)
+connection_pool = data.data_connection.connection()
 
 
 # 根據景點編號取得景點
