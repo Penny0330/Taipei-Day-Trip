@@ -1,62 +1,59 @@
-let fetching = false;
+let fetching = true; //是否要繼續 fetch 下一頁資料
 let nextPage;
 let keyword_value;
 
 let main = document.querySelector("main");
 
-window.onload = function(){
-    checkPage(0);
-    fetchCategory();
+// start loading
+checkPage(0);
+fetchCategory();
 
-    let footer = document.querySelector("footer");
-    const options = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.5,
-    };
-    const observer = new IntersectionObserver(continuePage, options);
-    observer.observe(footer);
-    function continuePage(entries, observer){
-        entries.forEach((entry) => {
-            if(entry.isIntersecting){
-                if(nextPage == null || nextPage == "null"){
-                    return;
-                }
-                if(keyword_value && fetching == false){
-                    let url = `/api/attractions?page=${nextPage}&keyword=${keyword_value}`;
+// scroll event
+let footer = document.querySelector("footer");
+
+const options = {
+root: null,
+rootMargin: "0px",
+threshold: 0.5,
+};
+
+const observer = new IntersectionObserver(continuePage, options);
+observer.observe(footer);
+
+function continuePage(entries){
+    entries.forEach((entry) => {
+        if(entry.isIntersecting){
+
+            if(nextPage != null){
+
+                if(keyword_value && fetching == true){
+                    let url = `/api/attractions?page=${nextPage}&keyword=${keyword_value}`;                  
                     fetchKeyword(url);
-                }else if(nextPage && fetching == false){
+
+                }else if(nextPage && fetching == true){
                     let url = `/api/attractions?page=${nextPage}`;
                     fetchData(url);
                 }
+            }else{
+                return
             }
-        })
-    } 
+        }
+    })
+};
 
-    
-}
 
 function checkPage(page){
     let url = `/api/attractions?page=${page}`;
     fetchData(url);
-}
+};
 
-function fetchData(url){
-    fetching = true;
-    fetch(url, {
-        method:'GET',
-        headers: {
-        'Content-Type':'application/json'
-      }
-    })
-    .then(response => {
-        return response.json();
-    })
-    .then(response => {
-        getAttraction(response);
-        nextPage = response.nextPage;
-    })
-}
+// 取得資料: 無 keyword
+async function fetchData(url){
+    let response = await fetch(url);
+    let result = await response.json();
+    getAttraction(result);
+    nextPage = result.nextPage;
+};
 
 // keyword 查詢
 let keyword = document.querySelector("#keyword_value");
@@ -68,32 +65,26 @@ button.addEventListener("click", ()=>{
     keyword.value = "";
     main.innerHTML = "";
     fetchKeyword(url);
-})
+});
 
-function fetchKeyword(url){
+// 取得資料: 有 keyword
+async function fetchKeyword(url){
+    let response = await fetch(url);
+    let result = await response.json();
+
+    if(result.data == undefined){
+        main.innerHTML ="";
+        main.innerHTML = `關鍵字:${keyword_value}，查無相關景點。`;
+        return
+    }
+    getAttraction(result);
+    nextPage = result.nextPage;
+};
+
+// 建立 Attraction 區塊，並將取得的 response 資料放入
+function getAttraction(result){
     fetching = true;
-    fetch(url, {
-        method:'GET',
-        headers: {
-        'Content-Type':'application/json'
-      }
-    })
-    .then(response => {
-        return response.json();
-    })
-    .then(response=> {
-        if(response.data == undefined){
-            main.innerHTML = "";
-            main.innerHTML = "查無相關景點，請重新輸入";
-            return
-        }
-        getAttraction(response);
-        nextPage = response.nextPage;
-    })
-}
-
-function getAttraction(response){
-    let get_data = response.data;
+    let get_data = result.data;
 
     for(let i = 0; i < get_data.length; i++){
 
@@ -127,27 +118,34 @@ function getAttraction(response){
         category.innerHTML = get_data[i]["category"];
         attraction_info.append(category);
     }
-    fetching = false;
-}
+};
 
 
 // 連線 API，取得⽬前所有的景點分類
-function fetchCategory(){
-    fetch("/api/categories")
-    .then(function(response){
-        return response.json()
-    })
-    .then(function(response){
-        getCategory(response);
-    })
-}
+// function fetchCategory(){
+//     fetch("/api/categories")
+//     .then(function(response){
+//         return response.json()
+//     })
+//     .then(function(response){
+//         getCategory(response);
+//     })
+// }
+
+//----try--- OK
+async function fetchCategory(){
+    let response = await fetch("/api/categories");
+    let result = await response.json();
+    getCategory(result);
+};
 
 // 建立暫時隱藏的分類區塊，並將取得的景點分類放入
-function getCategory(response){
-    data = response.data;
+function getCategory(result){
+    data = result.data;
 
     let category_list = document.createElement("div");
     category_list.setAttribute("class", "category_list");
+
     let slogan_search = document.querySelector(".slogan_search");
     slogan_search.appendChild(category_list);
 
@@ -157,7 +155,7 @@ function getCategory(response){
         category.innerHTML = data[category_name];
         category_list.appendChild(category);
     }
-}
+};
 
 
 // 點擊 keyword_input，顯示 category_list
@@ -167,7 +165,7 @@ searchInput.addEventListener("click", ()=>{
     let category_list = document.querySelector(".category_list");
     category_list.style.display = "grid";
 
-    category_list.childNodes.forEach(category =>{
+    category_list.childNodes.forEach((category) =>{
         category.addEventListener("mousedown", (e)=>{
             e.preventDefault(); // 防止 blur 與 click event
             let input_text = document.querySelector("#keyword_value");
@@ -175,11 +173,11 @@ searchInput.addEventListener("click", ()=>{
             category_list.style.display = "none";
         })
     })
-})
+});
 
 
 // 任意處關閉 category_list
-searchInput.addEventListener("blur", (e)=>{
+searchInput.addEventListener("blur", ()=>{
     let category_list = document.querySelector(".category_list");
     category_list.style.display = "none"; 
-})
+});

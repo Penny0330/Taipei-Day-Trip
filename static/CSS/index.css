@@ -145,7 +145,7 @@ header > .slogan_search > .search > button{
 
 header > .slogan_search > .category_list{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 120px);
   width: 400px;
 
   background-color: var(--white);
@@ -181,15 +181,14 @@ header > .slogan_search > .category_list{
 }
 
 header > .slogan_search > .category_list > .category{
-  width: 120px;
+  /* width: 120px; */
   height: 40px;
 
   padding: 10px 15px;
-  /* margin: 5px; */
   border-radius: 5px;
 
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 500;
   
   cursor: pointer;
 }
@@ -312,10 +311,7 @@ footer{
 
   header > .slogan_search > .category_list{
     width: 322px;
-  }
-
-  header > .slogan_search > .category_list > .category{
-    width: 96px;
+    grid-template-columns: repeat(3, 96px);
   }
 
   main{
