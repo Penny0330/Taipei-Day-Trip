@@ -2,7 +2,11 @@ from flask import *
 import data.data_connection
 
 # 建立 Blueprint 物件
-attraction = Blueprint("attraction", __name__)
+attraction = Blueprint("attraction",
+                       __name__,
+                       static_folder="static",
+                       template_folder="templates"
+                       )
 
 connection_pool = data.data_connection.connection()
 
