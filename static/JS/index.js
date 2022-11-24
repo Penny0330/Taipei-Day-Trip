@@ -1,4 +1,4 @@
-let fetching = true; //是否要繼續 fetch 下一頁資料
+let fetching = false; //是否在 fetch 資料
 let nextPage;
 let keyword_value;
 
@@ -24,17 +24,16 @@ function continuePage(entries){
     entries.forEach((entry) => {
         if(entry.isIntersecting){
 
-            if(nextPage != null){
-
-                if(keyword_value && fetching == true){
-                    let url = `/api/attractions?page=${nextPage}&keyword=${keyword_value}`;                  
-                    fetchKeyword(url);
-
-                }else if(nextPage && fetching == true){
+            if(nextPage != null && fetching == false){
+                if(!keyword_value){
                     let url = `/api/attractions?page=${nextPage}`;
                     fetchData(url);
+                }else{
+                    let url = `/api/attractions?page=${nextPage}&keyword=${keyword_value}`;                  
+                    fetchKeyword(url);
                 }
             }else{
+                // nextPage = null 時, 就停止動作
                 return
             }
         }
@@ -49,10 +48,14 @@ function checkPage(page){
 
 // 取得資料: 無 keyword
 async function fetchData(url){
+    fetching = true;
+
     let response = await fetch(url);
     let result = await response.json();
     getAttraction(result);
     nextPage = result.nextPage;
+
+    fetching = false;
 };
 
 // keyword 查詢
@@ -69,6 +72,7 @@ button.addEventListener("click", ()=>{
 
 // 取得資料: 有 keyword
 async function fetchKeyword(url){
+    fetching = true;
     let response = await fetch(url);
     let result = await response.json();
 
@@ -79,11 +83,12 @@ async function fetchKeyword(url){
     }
     getAttraction(result);
     nextPage = result.nextPage;
+
+    fetching = false;
 };
 
 // 建立 Attraction 區塊，並將取得的 response 資料放入
 function getAttraction(result){
-    fetching = true;
     let get_data = result.data;
 
     for(let i = 0; i < get_data.length; i++){
@@ -122,21 +127,14 @@ function getAttraction(result){
 
 
 // 連線 API，取得⽬前所有的景點分類
-// function fetchCategory(){
-//     fetch("/api/categories")
-//     .then(function(response){
-//         return response.json()
-//     })
-//     .then(function(response){
-//         getCategory(response);
-//     })
-// }
-
-//----try--- OK
 async function fetchCategory(){
+    fetching = true;
+
     let response = await fetch("/api/categories");
     let result = await response.json();
     getCategory(result);
+
+    fetching = false;
 };
 
 // 建立暫時隱藏的分類區塊，並將取得的景點分類放入
@@ -181,3 +179,22 @@ searchInput.addEventListener("blur", ()=>{
     let category_list = document.querySelector(".category_list");
     category_list.style.display = "none"; 
 });
+
+
+// 當 scrollbar 位於視窗高度 0 時，就隱藏 top button
+let top_btn = document.getElementById("top_btn");
+window.onscroll = function() {
+    top_btn.style.display = "block";
+    let height = document.documentElement.scrollTop || document.body.scrollTop;
+    if(height == 0) {
+        top_btn.style.display = "none";
+    }
+}
+
+// 按 Top 鈕， 回頂部
+top_btn.addEventListener("click", ()=>{
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    })
+})

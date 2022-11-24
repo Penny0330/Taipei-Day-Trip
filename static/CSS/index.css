@@ -5,6 +5,10 @@
   --light_gray: #757575;
   --white: #fff;
   --black_translucent:rgba(15, 14, 14, 0.6);
+  --black: #000;
+  --category_bgc: #E8E8E8;
+  --categoryList_shadow:  0px 0px 20px #AABBCC;
+  --attractionInfo_border: 1px solid #E8E8E8;
   --shadow: 0 3px 5px rgba(104, 104, 104, 0.8);
 }
 
@@ -27,8 +31,9 @@ nav{
 
   position: sticky;
   top: 0;
-  background-color: var(--white);
   z-index: 5;
+
+  background-color: var(--white);
   box-shadow: var(--shadow);
 }
 
@@ -139,28 +144,29 @@ header > .slogan_search > .search > button{
 
   background: url(../images/icon_search.png);
   background-repeat: no-repeat;
-  background-color: var(--green);
   background-position: 50% 50%;
+  background-color: var(--green);
 }
 
 header > .slogan_search > .category_list{
   display: grid;
   grid-template-columns: repeat(3, 120px);
   width: 400px;
+  margin-top: 5px;
 
   background-color: var(--white);
-  color: black;
-  box-shadow: 0px 0px 20px #AABBCC;
+  color: var(--black);
+  box-shadow: var(--categoryList_shadow);
   border-radius: 5px;
 
-  margin-top: 5px;
   position: absolute;
   top: 295px;
   z-index: 3;
 
-  display: none;
-
   animation: appear .4s ease-in-out;
+
+  /* 暫時隱藏 */
+  display: none;
 }
 
 @keyframes appear {
@@ -181,9 +187,7 @@ header > .slogan_search > .category_list{
 }
 
 header > .slogan_search > .category_list > .category{
-  /* width: 120px; */
   height: 40px;
-
   padding: 10px 15px;
   border-radius: 5px;
 
@@ -194,7 +198,31 @@ header > .slogan_search > .category_list > .category{
 }
 
 header > .slogan_search > .category_list > .category:hover{
-  background-color: #E8E8E8;
+  background-color: var(--category_bgc);
+}
+
+#top_btn{
+  display: none;
+
+  position: fixed;
+  right: 15px;
+  bottom: 50px;
+  z-index: 10;
+
+  background-color: var(--white);
+  color: var(--light_green);
+  border: 4px solid var(--light_green);
+
+  cursor: pointer;
+  font-size: 25px;
+
+  padding: 5px 12px;
+  border-radius: 50%;
+}
+
+#top_btn:hover{
+  color: var(--green);
+  border: 4px solid var(--green);
 }
 
 main{
@@ -208,7 +236,6 @@ main{
   grid-template-rows: repeat(3, 242px);
   gap: 30px;
   justify-content: center;
-
 }
 
 main > .attraction{
@@ -238,7 +265,8 @@ main > .attraction > .attraction_name > p{
 
   width: 100%;
   height: 40px;
-  padding: 10px;
+  padding: 8px 10px 10px;
+
 
   color: var(--white);
   font-weight: bold;
@@ -255,7 +283,7 @@ main > .attraction > .attraction_info{
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
 
-  border: 1px solid #E8E8E8;
+  border: var(--attractionInfo_border);
   color: var(--light_gray);
 }
 
@@ -329,7 +357,7 @@ footer{
   }
 
   main > .attraction > .attraction_name > img{
-    height: 235px;
+    height: 100%;
   }
 }
 
