@@ -1,18 +1,14 @@
 from flask import *
-from mysql.connector import pooling
+import data.data_connection
 
 # 建立 Blueprint 物件
-attraction = Blueprint("attraction", __name__)
+attraction = Blueprint("attraction",
+                       __name__,
+                       static_folder="static",
+                       template_folder="templates"
+                       )
 
-connection_pool = pooling.MySQLConnectionPool(
-    pool_name="connection_pool",
-    pool_size=5,
-    pool_reset_session=True,
-    host="localhost",
-    user="root",
-    password="PASSWORD",
-    database="db"
-)
+connection_pool = data.data_connection.connection()
 
 
 # 取得不同分頁的景點列表資料 & 關鍵字篩選
@@ -27,9 +23,8 @@ def attraction_all():
 
         # 有 keyword
         if keyword != None:
-            # 計算共有幾筆符合條件
             cursor.execute(
-                f'SELECT COUNT(*) FROM `attractions` WHERE `CAT` LIKE "{keyword}" OR `name` LIKE "%{keyword}%"')
+                "SELECT COUNT(*) FROM `attractions` WHERE `CAT` LIKE %s OR `name` LIKE %s", [keyword, f'%{keyword}%'])
             count = cursor.fetchone()
             count = count["COUNT(*)"]
 
@@ -48,7 +43,7 @@ def attraction_all():
 
                 # 拿取符合的資料: LIMIT 從第幾筆開始, 資料數量
                 cursor.execute(
-                    f'SELECT * FROM `attractions` WHERE `CAT` LIKE "{keyword}" OR  `name` LIKE "%{keyword}%" LIMIT {page*12}, 12')
+                    "SELECT * FROM `attractions` WHERE `CAT` LIKE %s OR  `name` LIKE %s LIMIT %s, 12", [keyword, f'%{keyword}%', page*12])
                 attractions = cursor.fetchall()
 
                 dataList = []

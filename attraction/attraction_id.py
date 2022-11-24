@@ -1,18 +1,14 @@
 from flask import *
-from mysql.connector import pooling
+import data.data_connection
 
 # 建立 Blueprint 物件
-attraction_id = Blueprint("attraction_id", __name__)
+attraction_id = Blueprint("attraction_id",
+                          __name__,
+                          static_folder="static",
+                          template_folder="templates"
+                          )
 
-connection_pool = pooling.MySQLConnectionPool(
-    pool_name="connection_pool",
-    pool_size=5,
-    pool_reset_session=True,
-    host="localhost",
-    user="root",
-    password="PASSWORD",
-    database="db"
-)
+connection_pool = data.data_connection.connection()
 
 
 # 根據景點編號取得景點

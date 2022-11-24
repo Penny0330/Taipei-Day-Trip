@@ -1,0 +1,364 @@
+:root {
+  --green: #448899;
+  --light_green: rgba(68, 136, 153, 0.5);
+  --deep_gray: #666666;
+  --light_gray: #757575;
+  --white: #fff;
+  --black_translucent:rgba(15, 14, 14, 0.6);
+  --black: #000;
+  --category_bgc: #E8E8E8;
+  --categoryList_shadow:  0px 0px 20px #AABBCC;
+  --attractionInfo_border: 1px solid #E8E8E8;
+  --shadow: 0 3px 5px rgba(104, 104, 104, 0.8);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans TC';
+}
+
+#root{
+  display: grid;
+  grid-template-rows: 54px 320px auto;
+}
+
+nav{
+  display: grid;
+  grid-template-columns: auto minmax(300px, 1200px) auto;
+
+
+  position: sticky;
+  top: 0;
+  z-index: 5;
+
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+}
+
+nav > .top_link{
+  grid-column: 2/3;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+
+nav > .top_link > h1{
+  font-size: 30px;
+
+  margin-left: 10px;
+}
+
+nav > .top_link > h1 > a{
+  text-decoration: none;
+  color: var(--green);
+}
+
+nav > .top_link > .link{
+  justify-self: end;
+
+  padding: 10px;
+}
+
+nav > .top_link > .link > a{
+  text-decoration: none;
+  color: var(--deep_gray);
+
+  margin: 0 6px;
+}
+
+nav > .top_link > h1 > a:hover{
+  color: var(--light_green);
+}
+
+nav > .top_link > .link > a:hover{
+  color: var(--light_green);
+}
+
+header{
+  grid-row: 2/3;
+
+  display: grid;
+  grid-template-columns: auto minmax(300px, 1200px) auto;
+
+  background-image: url(../images/welcome.png);
+  background-size: cover;
+}
+
+
+header > .slogan_search{
+  grid-column: 2/3;
+  align-self: center;
+  padding-left: 10px;
+
+  display: grid;
+
+  color: var(--white);
+}
+
+header > .slogan_search > .slogan{
+  display: grid;
+  gap: 15px;
+}
+
+header > .slogan_search > h2{
+  font-size: 28px;
+}
+
+header > .slogan_search > .search{
+  width: 460px;
+
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+
+  margin-top: 25px;
+}
+
+header > .slogan_search > .search > input{
+  width: 400px;
+  height: 46px;
+  border-radius: 3px;
+  border: none;
+
+  font-size: 16px;
+  color: var(--light_gray);
+
+  padding-left: 15px;
+}
+
+header > .slogan_search > .search > input:focus{
+  outline: none;
+  border: 5px solid var(--light_green);
+}
+
+header > .slogan_search > .search > button{
+  width: 60px;
+  height: 46px;
+
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+
+  background: url(../images/icon_search.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-color: var(--green);
+}
+
+header > .slogan_search > .category_list{
+  display: grid;
+  grid-template-columns: repeat(3, 120px);
+  width: 400px;
+  margin-top: 5px;
+
+  background-color: var(--white);
+  color: var(--black);
+  box-shadow: var(--categoryList_shadow);
+  border-radius: 5px;
+
+  position: absolute;
+  top: 295px;
+  z-index: 3;
+
+  animation: appear .4s ease-in-out;
+
+  /* 暫時隱藏 */
+  display: none;
+}
+
+@keyframes appear {
+  0% {
+    top: 280px;
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.25;
+  }
+  50%{
+    opacity: 0.75;
+  }
+  100% {
+    top: 295px;
+    opacity: 1;
+  }
+}
+
+header > .slogan_search > .category_list > .category{
+  height: 40px;
+  padding: 10px 15px;
+  border-radius: 5px;
+
+  font-size: 14px;
+  font-weight: 500;
+  
+  cursor: pointer;
+}
+
+header > .slogan_search > .category_list > .category:hover{
+  background-color: var(--category_bgc);
+}
+
+#top_btn{
+  display: none;
+
+  position: fixed;
+  right: 15px;
+  bottom: 50px;
+  z-index: 10;
+
+  background-color: var(--white);
+  color: var(--light_green);
+  border: 4px solid var(--light_green);
+
+  cursor: pointer;
+  font-size: 25px;
+
+  padding: 5px 12px;
+  border-radius: 50%;
+}
+
+#top_btn:hover{
+  color: var(--green);
+  border: 4px solid var(--green);
+}
+
+main{
+  width: 1200px;
+  
+  margin: 50px auto;
+  padding: 15px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 270px);
+  grid-template-rows: repeat(3, 242px);
+  gap: 30px;
+  justify-content: center;
+}
+
+main > .attraction{
+  display: grid;
+  grid-template-rows: 197px 45px;
+
+  cursor: pointer;
+}
+
+main > .attraction:hover{
+  box-shadow: var(--shadow);
+}
+
+main > .attraction > .attraction_name{
+  position: relative;
+}
+
+main > .attraction > .attraction_name > img{
+  display: block;
+  width: 100%;
+  height: 197px;
+}
+
+main > .attraction > .attraction_name > p{
+  position: absolute;
+  bottom: 0px;
+
+  width: 100%;
+  height: 40px;
+  padding: 8px 10px 10px;
+
+
+  color: var(--white);
+  font-weight: bold;
+  background-color: var(--black_translucent);
+
+ 
+  overflow: hidden;  /* 強制讓文字不換行 */
+  text-overflow: ellipsis; /* 隱藏此行文字超出容器的部分 */
+  white-space: nowrap; /* 溢出的文字加上省略符號 */
+}
+
+main > .attraction > .attraction_info{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+
+  border: var(--attractionInfo_border);
+  color: var(--light_gray);
+}
+
+main > .attraction > .attraction_info > .category{
+  justify-self: end;
+  padding: 10px;
+}
+
+main > .attraction > .attraction_info > .mrt{
+  padding: 10px;
+}
+
+footer{
+  background: var(--light_gray);
+  height: 104px;
+
+  display: grid;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--white);
+  font-weight: bold;
+}
+
+@media (max-width: 1200px) {
+  main{
+    width: 900px;
+    grid-template-columns: repeat(3, 270px);
+    grid-template-rows: repeat(4, 242px);
+  }
+}
+
+@media (max-width: 900px){
+  main{
+    width: 600px;
+    grid-template-columns: repeat(2, 270px);
+    grid-template-rows: repeat(6, 242px);
+  }
+}
+
+@media (max-width: 600px){
+  header > .slogan_search{
+    padding-left: 20px;
+  }
+
+  header > .slogan_search > .search{
+    width: 285px;
+  }
+
+  header > .slogan_search > .search > input{
+    width: 230px;
+  }
+
+  header > .slogan_search > .category_list{
+    width: 322px;
+    grid-template-columns: repeat(3, 96px);
+  }
+
+  main{
+    width: 360px;
+    grid-template-columns: repeat(1, 322px);
+    grid-template-rows: repeat(12, 280px);
+
+    gap: 15px;
+    margin: 30px auto;
+  }
+
+  main > .attraction{
+    display: grid;
+    grid-template-rows: 235px 45px;
+  }
+
+  main > .attraction > .attraction_name > img{
+    height: 100%;
+  }
+}
+
+
