@@ -107,7 +107,7 @@ afternoon.addEventListener("click", ()=>{
     price.innerHTML = "新台幣 2500 元";
 })
 
-// 當 scrollbar 位於視窗高度 0 時，就隱藏 top button
+// ----- top button -----
 let top_btn = document.getElementById("top_btn");
 window.onscroll = function() {
     top_btn.style.display = "block";
@@ -117,7 +117,7 @@ window.onscroll = function() {
     }
 }
 
-// 按 Top 鈕， 回頂部
+// ----- push the Top-button,back to top ------
 top_btn.addEventListener("click", ()=>{
     window.scrollTo({
         top:0,
