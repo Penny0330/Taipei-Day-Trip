@@ -23,7 +23,6 @@ observer.observe(footer);
 function continuePage(entries){
     entries.forEach((entry) => {
         if(entry.isIntersecting){
-
             if(nextPage != null && fetching == false){
                 if(!keyword_value){
                     let url = `/api/attractions?page=${nextPage}`;
@@ -32,7 +31,8 @@ function continuePage(entries){
                     let url = `/api/attractions?page=${nextPage}&keyword=${keyword_value}`;                  
                     fetchKeyword(url);
                 }
-            }else{
+            }
+            else{
                 // nextPage = null 時, 就停止動作
                 return
             }
@@ -95,6 +95,7 @@ function getAttraction(result){
 
         let attraction = document.createElement("a");
         attraction.setAttribute("class", "attraction");
+        attraction.href = `attraction/${get_data[i]["id"]}`;
         main.append(attraction);
 
         let attraction_name = document.createElement("div");
@@ -181,7 +182,7 @@ searchInput.addEventListener("blur", ()=>{
 });
 
 
-// 當 scrollbar 位於視窗高度 0 時，就隱藏 top button
+// ----- top button -----
 let top_btn = document.getElementById("top_btn");
 window.onscroll = function() {
     top_btn.style.display = "block";
@@ -191,7 +192,7 @@ window.onscroll = function() {
     }
 }
 
-// 按 Top 鈕， 回頂部
+// ----- push the Top-button,back to top ------
 top_btn.addEventListener("click", ()=>{
     window.scrollTo({
         top:0,

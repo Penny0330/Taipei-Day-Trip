@@ -1,0 +1,332 @@
+:root {
+    --green: #448899;
+    --light_green: rgba(68, 136, 153, 0.5);
+    --deep_gray: #666666;
+    --light_gray: #757575;
+    --white: #fff;
+    --black: #000;
+    --black_translucent:rgba(15, 14, 14, 0.6);
+    --bookingForm_bgc: #E8E8E8;
+    --shadow: 0 3px 5px rgba(104, 104, 104, 0.8);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans TC';
+}
+
+#root{
+    display: grid;
+    grid-template-rows: 54px auto;
+}
+
+nav{
+    display: grid;
+    grid-template-columns: auto minmax(300px, 1200px) auto;
+
+
+    position: sticky;
+    top: 0;
+    z-index: 5;
+
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+}
+
+nav > .top_link{
+    grid-column: 2/3;
+
+    display: grid;
+    grid-template-columns: 160px auto;
+    align-items: center;
+}
+
+nav > .top_link > h1{
+    font-size: 30px;
+
+    margin-left: 10px;
+}
+
+nav > .top_link > h1 > a{
+    text-decoration: none;
+    color: var(--green);
+}
+
+nav > .top_link > .link{
+    justify-self: end;
+
+    padding: 10px 0px;
+}
+
+nav > .top_link > .link > a{
+    text-decoration: none;
+    color: var(--deep_gray);
+
+    margin: 0 6px;
+}
+
+nav > .top_link > h1 > a:hover{
+    color: var(--light_green);
+}
+
+nav > .top_link > .link > a:hover{
+    color: var(--light_green);
+}
+
+#top_btn{
+    display: none;
+
+    position: fixed;
+    right: 15px;
+    bottom: 50px;
+    z-index: 10;
+
+    background-color: var(--white);
+    color: var(--light_green);
+    border: 4px solid var(--light_green);
+
+    cursor: pointer;
+    font-size: 25px;
+
+    padding: 5px 12px;
+    border-radius: 50%;
+}
+
+#top_btn:hover{
+    color: var(--green);
+    border: 4px solid var(--green);
+}
+
+main{
+    display: grid;
+    grid-template-columns: minmax(300px, 1200px);
+    justify-content: center;
+    margin: 37px 0;
+    gap: 37px;
+}
+
+main > .top{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+main > .top > .left{
+    padding: 3px 0px 3px 15px;
+
+    position: relative;
+}
+
+main > .top > .right{
+    padding: 3px 15px 3px 0px;
+}
+
+main > .top > .left > .imgAll{
+    width: 100%;
+    height: 100%;
+}
+
+main > .top > .left > .imgAll > .attractionImg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    aspect-ratio: 16/9;
+
+    display: none;
+
+    animation-name: fade;
+    animation-duration: 2s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .6
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+main > .top > .left > .arrowAll > .prev{
+    position: absolute;
+    top: 45%;
+    left: 25px;
+}
+
+main > .top > .left > .arrowAll > .next{
+    position: absolute;
+    top: 45%;
+    right: 10px;
+}
+
+main > .top > .left > .arrowAll > .prev > .leftArrow, .next > .rightArrow{
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+main > .top > .left > .arrowAll > .prev > .leftArrow:hover, .next > .rightArrow:hover{
+    box-shadow: var(--shadow);
+}
+
+main > .top > .left > .dotAll{
+    position: relative;
+    bottom: 25px;
+
+    display: flex;
+    justify-content: center;
+}
+
+main > .top > .left > .dotAll > .dot{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--white);
+    display: inline-block;
+    margin: 0 2px;
+
+    transition: background-color 1s ease;
+}
+
+main > .top > .left > .dotAll >.active{
+    border: 1px solid var(--white);
+    background-color: var(--deep_gray);
+}
+
+
+main > .top > .right{
+    display: grid;
+    gap: 20px;
+    color: var(--deep_gray);
+}
+
+main > .top > .right > .title_info{
+    display: grid;
+    gap: 15px;
+}
+
+main > .top > .right > .title_info > .title{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+main > .top > .right > .bookingForm{
+    display: grid;
+    gap: 15px;
+
+    background-color: var(--bookingForm_bgc);
+    padding: 15px 20px;
+    border-radius: 5px;
+}
+
+main > .top > .right > .bookingForm > .date{
+    display: flex;
+    align-items: center;
+}
+
+main > .top > .right > .bookingForm > .price{
+    display: flex;
+}
+
+main > .top > .right > .bookingForm > .time{
+    display: flex;
+    align-items: center;
+    accent-color: var(--green)
+}
+
+main > .top > .right > .bookingForm > .time > .rdobutton_label{
+    width: 18px;
+    height: 18px;
+}
+
+main > .top > .right > .bookingForm > .time > label{
+    margin: 0 10px;
+}
+
+main > .top > .right > .bookingForm > .bookingBtn{
+    color: var(--white);
+    background-color: var(--green);
+    font-size: 19px;
+    font-weight: 400px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    width: 154px;
+    height: 3rem;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+
+main > .bottom{
+    padding: 0 10px;
+}
+
+main > .bottom > .line{
+    width: 100%;
+    border: 1px solid var(--bookingForm_bgc);
+    margin-bottom: 40px;
+}
+
+main > .bottom > .description, .address, .direction{
+    padding: 10px 10px 20px 10px;
+    color: var(--deep_gray);
+    line-height: 23.17px;
+}
+
+.addressTitle, .directionTitle{
+    font-weight: bold;
+}
+
+footer{
+    background: var(--light_gray);
+    height: 104px;
+
+    display: grid;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--white);
+    font-weight: bold;
+}
+
+@media screen and (max-width: 670px) {
+    main{
+        margin: 0 0 50px;
+    }
+
+    main > .top{
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+    }
+
+    main > .top > .left{
+        padding: 0;
+    }
+
+    main > .top > .left > .imgAll > .attractionImg{
+        width: 100%;
+        height: 70vw;
+    }
+
+    main > .top > .left > .dotAll{
+        position: relative;
+        bottom: 40px;
+    }
+
+    main > .top > .left > .arrowAll > .prev{
+        left: 10px;
+    }
+    
+    main > .top > .right{
+        padding: 0 10px;
+    }
+
+    main > .bottom{
+        padding: 0 15px;
+    }
+}

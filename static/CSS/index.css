@@ -233,7 +233,6 @@ main{
 
   display: grid;
   grid-template-columns: repeat(4, 270px);
-  grid-template-rows: repeat(3, 242px);
   gap: 30px;
   justify-content: center;
 }
@@ -241,6 +240,8 @@ main{
 main > .attraction{
   display: grid;
   grid-template-rows: 197px 45px;
+  text-decoration: none;
+  border-radius: 5px;
 
   cursor: pointer;
 }
@@ -285,6 +286,8 @@ main > .attraction > .attraction_info{
 
   border: var(--attractionInfo_border);
   color: var(--light_gray);
+
+  border-radius: 5px;
 }
 
 main > .attraction > .attraction_info > .category{
@@ -360,5 +363,3 @@ footer{
     height: 100%;
   }
 }
-
-
