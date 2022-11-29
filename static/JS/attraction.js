@@ -77,7 +77,7 @@ function arrowButton(index) {
 function showImages(index) {
     let i;
     
-    if (index > images.length){
+    if (index > images.length){ 
         imageIndex = 1;
     }
     if (index < 1){
@@ -105,6 +105,24 @@ morning.addEventListener("click", ()=>{
 
 afternoon.addEventListener("click", ()=>{
     price.innerHTML = "新台幣 2500 元";
+})
+
+// 當 scrollbar 位於視窗高度 0 時，就隱藏 top button
+let top_btn = document.getElementById("top_btn");
+window.onscroll = function() {
+    top_btn.style.display = "block";
+    let height = document.documentElement.scrollTop || document.body.scrollTop;
+    if(height == 0) {
+        top_btn.style.display = "none";
+    }
+}
+
+// 按 Top 鈕， 回頂部
+top_btn.addEventListener("click", ()=>{
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    })
 })
 
 
