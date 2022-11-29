@@ -23,7 +23,6 @@ observer.observe(footer);
 function continuePage(entries){
     entries.forEach((entry) => {
         if(entry.isIntersecting){
-
             if(nextPage != null && fetching == false){
                 if(!keyword_value){
                     let url = `/api/attractions?page=${nextPage}`;
@@ -32,7 +31,8 @@ function continuePage(entries){
                     let url = `/api/attractions?page=${nextPage}&keyword=${keyword_value}`;                  
                     fetchKeyword(url);
                 }
-            }else{
+            }
+            else{
                 // nextPage = null 時, 就停止動作
                 return
             }
@@ -95,6 +95,7 @@ function getAttraction(result){
 
         let attraction = document.createElement("a");
         attraction.setAttribute("class", "attraction");
+        attraction.href = `attraction/${get_data[i]["id"]}`;
         main.append(attraction);
 
         let attraction_name = document.createElement("div");
