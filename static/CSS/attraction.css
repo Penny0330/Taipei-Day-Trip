@@ -56,13 +56,14 @@ nav > .top_link > h1 > a{
 
 nav > .top_link > .link{
     justify-self: end;
-
+    display: flex;
     padding: 10px 0px;
 }
 
-nav > .top_link > .link > a{
+nav > .top_link > .link > .top_link_booking, .top_link_login{
     text-decoration: none;
     color: var(--deep_gray);
+    cursor: pointer;
 
     margin: 0 6px;
 }
@@ -187,6 +188,7 @@ main > .top > .left > .dotAll > .dot{
     background-color: var(--white);
     display: inline-block;
     margin: 0 2px;
+    cursor: pointer;
 
     transition: background-color 1s ease;
 }

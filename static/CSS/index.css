@@ -22,6 +22,7 @@
 #root{
   display: grid;
   grid-template-rows: 54px 320px auto;
+  position: relative;
 }
 
 nav{
@@ -58,13 +59,13 @@ nav > .top_link > h1 > a{
 
 nav > .top_link > .link{
   justify-self: end;
-
+  display: flex;
   padding: 10px;
 }
 
-nav > .top_link > .link > a{
-  text-decoration: none;
+nav > .top_link > .link > .top_link_booking, .top_link_login{
   color: var(--deep_gray);
+  cursor: pointer;
 
   margin: 0 6px;
 }

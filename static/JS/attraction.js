@@ -49,7 +49,7 @@ function getAttraction_Id(url_Id){
 
 // ----- create dot、img ----- 
 function create_DotImg(){
-    for(let i = 0; i < imgData.length; i++){
+    for(let i = 0; i < imgCount; i++){
         dotSpan = document.createElement("span");
         dotSpan.setAttribute("class", "dot");
         dotAll.append(dotSpan)
@@ -67,12 +67,21 @@ function create_DotImg(){
     // ----- initial loading -----
     imageIndex = 1;
     showImages(imageIndex);
+
+    // ----- push the dots can change img -----
+    for(let i = 0; i < dots.length; i++){
+        dots[i].addEventListener("click", (e)=>{
+            showImages(imageIndex = i + 1);
+        })
+    }
 };
 
 // ----- img-Arrows -----
 function arrowButton(index) {
     showImages(imageIndex += index);
 }
+
+
 
 function showImages(index) {
     let i;
