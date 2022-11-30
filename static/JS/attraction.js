@@ -68,9 +68,9 @@ function create_DotImg(){
     imageIndex = 1;
     showImages(imageIndex);
 
-    // ----- push the dots can change img -----
+    // ----- click the dot switch images -----
     for(let i = 0; i < dots.length; i++){
-        dots[i].addEventListener("click", (e)=>{
+        dots[i].addEventListener("click", ()=>{
             showImages(imageIndex = i + 1);
         })
     }
@@ -79,28 +79,32 @@ function create_DotImg(){
 // ----- img-Arrows -----
 function arrowButton(index) {
     showImages(imageIndex += index);
-}
-
+};
 
 
 function showImages(index) {
     let i;
     
-    if (index > images.length){ 
+    // if currentIndex > imgCount, imageIndex back to startIndex
+    if (index > imgCount){ 
         imageIndex = 1;
     }
+    // if currentIndex < 1, imageIndex back to endIndex
     if (index < 1){
-        imageIndex = images.length;
+        imageIndex = imgCount;
     }
-    for (i = 0; i < images.length; i++) {
+    // all images set display = "none"
+    for (i = 0; i < imgCount; i++) {
         images[i].style.display = "none";
     }
+    // all dots remove CSS.active
     for (i = 0; i < dots.length; i++) {
         dots[i].classList.remove("active");
     }
+    // according to the current index, show  the image and dot
     images[imageIndex-1].style.display = "block";
     dots[imageIndex-1].classList.add("active");
-}
+};
 
 
 // ----- price -----
@@ -110,11 +114,11 @@ let price = document.getElementById("price");
 
 morning.addEventListener("click", ()=>{
     price.innerHTML = "新台幣 2000 元";
-})
+});
 
 afternoon.addEventListener("click", ()=>{
     price.innerHTML = "新台幣 2500 元";
-})
+});
 
 // ----- top button -----
 let top_btn = document.getElementById("top_btn");
@@ -124,15 +128,15 @@ window.onscroll = function() {
     if(height == 0) {
         top_btn.style.display = "none";
     }
-}
+};
 
-// ----- push the Top-button,back to top ------
+// ----- click the Top-button and back to top ------
 top_btn.addEventListener("click", ()=>{
     window.scrollTo({
         top:0,
         behavior:"smooth"
     })
-})
+});
 
 
 

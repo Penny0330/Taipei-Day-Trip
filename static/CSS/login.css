@@ -43,9 +43,11 @@
     padding: 15px;
     justify-items: center;
 
-    animation: appear .2s ease-in;
-
     display: none;
+}
+
+.appear{
+    animation: appear .2s ease-in;
 }
 
 @keyframes appear {

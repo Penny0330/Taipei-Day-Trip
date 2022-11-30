@@ -193,7 +193,12 @@ main > .top > .left > .dotAll > .dot{
     transition: background-color 1s ease;
 }
 
-main > .top > .left > .dotAll >.active{
+main > .top > .left > .dotAll > .active{
+    border: 1px solid var(--white);
+    background-color: var(--deep_gray);
+}
+
+main > .top > .left > .dotAll > .dot:hover{
     border: 1px solid var(--white);
     background-color: var(--deep_gray);
 }

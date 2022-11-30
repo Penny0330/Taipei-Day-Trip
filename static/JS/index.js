@@ -192,7 +192,7 @@ window.onscroll = function() {
     }
 }
 
-// ----- push the Top-button,back to top ------
+// ----- click the Top-button and back to top ------
 top_btn.addEventListener("click", ()=>{
     window.scrollTo({
         top:0,
