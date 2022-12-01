@@ -60,7 +60,7 @@ async function fetchData(url){
 
 // keyword 查詢
 let keyword = document.querySelector("#keyword_value");
-let button = document.querySelector("button");
+let button = document.querySelector(".search_btn");
 
 button.addEventListener("click", ()=>{
     keyword_value = keyword.value;
