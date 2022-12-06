@@ -1,23 +1,19 @@
 :root {
-    --green: #448899;
-    --light_green: rgba(68, 136, 153, 0.5);
+    --overlay: rgba(0, 0, 0, 0.25);
+    --white: #fff;
+    --login_box_shadow: 0px 4px 60px #AAAAAA;
     --deep_gray: #666666;
     --light_gray: #757575;
-    --white: #fff;
-    --black_translucent:rgba(15, 14, 14, 0.6);
-    --black: #000;
-    --category_bgc: #E8E8E8;
-    --categoryList_shadow:  0px 0px 20px #AABBCC;
-    --attractionInfo_border: 1px solid #E8E8E8;
-    --login_box_shadow: 0px 4px 60px #AAAAAA;
-    --shadow: 0 3px 5px rgba(104, 104, 104, 0.8);
     --login_before: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+    --message: rgba(204, 92, 92, 0.9);
+    --green: #448899;
+    --stop_green: rgba(68, 136, 153, 0.5);
 }
 
 .overlay{
     width: 100%;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: var(--overlay);
     position: fixed;
     top: 0;
     z-index: 8;
@@ -25,6 +21,7 @@
     display: none;
 }
 
+/*----- SignIn -----*/
 .signIn{
     width: 340px;
 
@@ -47,10 +44,10 @@
 }
 
 .appear{
-    animation: appear .2s ease-in;
+    animation: loginBoxAppear .2s ease-in;
 }
 
-@keyframes appear {
+@keyframes loginBoxAppear {
     0% {
         transform: scale(0);
         opacity: 0;
@@ -93,7 +90,7 @@
 .signIn > .signIn_email, .signIn_password{
     width: 310px;
     height: 47px;
-    margin-bottom: 10px;
+    margin: 5px 0;
     padding-left: 10px;
     border-radius: 5px;
     border: 1px solid #cccccc;
@@ -105,18 +102,17 @@
     font-size: 19px;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
 
-    background-color: var(--green);
     color: var(--white);
 
     padding: 10px 20px;
-    margin-bottom: 10px;
+    margin: 10px 0;
 }
 
-.signIn > .signIn_message{
+.signIn > .signIn_change_message{
     color: var(--deep_gray);
     cursor: pointer;
+    text-decoration: underline;
 }
 
 .signIn::before{
@@ -131,7 +127,21 @@
     left: 0;
 }
 
+.signIn > .signIn_response_message{
+    width: 100%;
+    color: var(--white);
+    background-color: var(--message);
+    margin: 10px 0;
+}
 
+.signIn_email_message, .signIn_password_message{
+    font-size: 14px;
+    color: var(--message);
+    text-align: start;
+    padding-left: 10px;
+}
+
+/*----- SignUp -----*/
 .signUp{
     width: 340px;
 
@@ -173,7 +183,7 @@
 .signUp >.signUp_name, .signUp_email, .signUp_password{
     width: 310px;
     height: 47px;
-    margin-bottom: 10px;
+    margin: 5px 0;
     padding-left: 10px;
     border-radius: 5px;
     border: 1px solid #cccccc;
@@ -185,18 +195,17 @@
     font-size: 19px;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
 
-    background-color: var(--green);
     color: var(--white);
 
     padding: 10px 20px;
-    margin-bottom: 10px;
+    margin: 10px 0;
 }
 
-.signUp > .signUp_message{
+.signUp > .signUp_change_message{
     color: var(--deep_gray);
     cursor: pointer;
+    text-decoration: underline;
 }
 
 .signUp::before{
@@ -209,4 +218,31 @@
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.signUp_response_message{
+    width: 100%;
+    color: var(--white);
+    background-color: rgba(204, 92, 92, 0.9);
+    margin: 10px 0px;
+}
+
+
+
+.signUp_name_message, .signUp_email_message, .signUp_password_message{
+    font-size: 14px;
+    color: var(--message);
+    text-align: start;
+    padding-left: 10px;
+}
+
+/* button */
+.valid{
+    cursor: pointer;
+    background-color: var(--green);
+}
+
+.invalid{
+    cursor: not-allowed;
+    background-color: var(--stop_green);
 }

@@ -1,9 +1,8 @@
 from flask import *
 # from mysql.connector import pooling
 # 匯入 blueprint
-from attraction.attraction import attraction
-from attraction.attraction_id import attraction_id
-from attraction.attraction_categories import attraction_categories
+from api.attraction import attraction
+from api.auth import auth
 
 app = Flask(__name__,
             static_folder="static",
@@ -17,8 +16,7 @@ app.config["JSON_SORT_KEYS"] = False  # 排序 JSON
 
 # 使用 register_blueprint 方法將 blueprint 註冊到 app
 app.register_blueprint(attraction)
-app.register_blueprint(attraction_id)
-app.register_blueprint(attraction_categories)
+app.register_blueprint(auth)
 
 # Pages
 

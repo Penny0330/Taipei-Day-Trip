@@ -63,7 +63,7 @@ nav > .top_link > .link{
   padding: 10px;
 }
 
-nav > .top_link > .link > .top_link_booking, .top_link_login{
+nav > .top_link > .link > .top_link_booking, .top_link_login, .top_link_logout{
   color: var(--deep_gray);
   cursor: pointer;
 
@@ -74,8 +74,12 @@ nav > .top_link > h1 > a:hover{
   color: var(--light_green);
 }
 
-nav > .top_link > .link > a:hover{
+nav > .top_link > .link > .top_link_booking:hover, .top_link_login:hover, .top_link_logout:hover{
   color: var(--light_green);
+}
+
+nav > .top_link > .link > .top_link_logout{
+  display: none;
 }
 
 header{
@@ -154,6 +158,7 @@ header > .slogan_search > .category_list{
   grid-template-columns: repeat(3, 120px);
   width: 400px;
   margin-top: 5px;
+  margin-left: 10px;
 
   background-color: var(--white);
   color: var(--black);
@@ -316,7 +321,6 @@ footer{
   main{
     width: 900px;
     grid-template-columns: repeat(3, 270px);
-    /* grid-template-rows: repeat(4, 242px); */
   }
 }
 
@@ -324,7 +328,6 @@ footer{
   main{
     width: 600px;
     grid-template-columns: repeat(2, 270px);
-    /* grid-template-rows: repeat(6, 242px); */
   }
 }
 
@@ -344,12 +347,12 @@ footer{
   header > .slogan_search > .category_list{
     width: 322px;
     grid-template-columns: repeat(3, 96px);
+    margin-left: 20px;
   }
 
   main{
     width: 360px;
     grid-template-columns: repeat(1, 322px);
-    /* grid-template-rows: repeat(12, 280px); */
 
     gap: 15px;
     margin: 30px auto;

@@ -1,73 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
+
+{% block title %}
     <title>Taipei Day Trip</title>
-    <!-- google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-    <!-- local css -->
+{% endblock title %}
+
+{% block css %}
     <link rel="stylesheet" href="/CSS/index.css">
     <link rel="stylesheet" href="/CSS/login.css">
-
-</head>
-<body>
-    <div id="root">
-        <div class="overlay"></div>
-        <nav>
-            <div class="top_link">
-                <h1><a href="/">台北一日遊</a></h1>
-                <div class="link">
-                    <div class="top_link_booking">預定行程</div>
-                    <div class="top_link_login">登入/註冊</div>
-                </div>
+{% endblock css %}
+{% block content %}
+    <header>
+        <div class="slogan_search">
+            <div class="slogan">
+                <h1>輕鬆享受台北一日悠閒</h1>
+                <p>探索每個角落，體驗城市的深度旅遊行程</p>
             </div>
-        </nav>
-
-        <div class="signIn">
-            <h2 class="signIn_title">登入會員帳號</h2>
-            <img class="login_icon_close" src="/images/icon_close.png" alt="">
-            <input class="signIn_email" type="email" placeholder="輸入電子信箱">
-            <input class="signIn_password" type="password" placeholder="輸入密碼">
-            <button class="signIn_button">登入帳戶</button>
-            <div class="signIn_message">還沒有帳戶？點此註冊</div>
-        </div>
-
-        <div class="signUp">
-            <h2 class="signUp_title">註冊會員帳號</h2>
-            <img class="login_icon_close" src="/images/icon_close.png" alt="">
-            <input class="signUp_name" type="text" placeholder="請輸入姓名">
-            <input class="signUp_email" type="email" placeholder="輸入電子信箱">
-            <input class="signUp_password" type="password" placeholder="輸入密碼">
-            <button class="signUp_button">註冊新帳戶</button>
-            <div class="signUp_message">已經有帳戶了？點此登入</div>
-        </div>
-        
-
-        <header>
-            <div class="slogan_search">
-                <div class="slogan">
-                    <h1>輕鬆享受台北一日悠閒</h1>
-                    <p>探索每個角落，體驗城市的深度旅遊行程</p>
-                </div>
-                <div class="search">
-                    <input type="text" class="searchInput" id="keyword_value" placeholder="輸入景點名稱查詢">
-                    <button class="search_btn"></button>
-                </div>
+            <div class="search">
+                <input type="text" class="searchInput" id="keyword_value" placeholder="輸入景點名稱查詢">
+                <button class="search_btn"></button>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <div id="top_btn">↑</div>
+    <main></main>
+{% endblock content %}
 
-        <main></main>
-            
-        <footer>COPYRIGHT © 2022 台北一日遊</footer>
-    </div>
-
+{% block js %}
     <script src="/JS/index.js"></script>
     <script src="/JS/login.js"></script>
-</body>
-</html>
+{% endblock js %}
