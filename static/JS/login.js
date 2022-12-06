@@ -12,6 +12,8 @@ window.onload = function(){
         if(res.data){
             top_link_logout.style.display = "block";
             top_link_login.style.display = "none";
+        }else{
+            return
         }
     })
 };
@@ -177,6 +179,7 @@ signUp_button.addEventListener("click", ()=>{
         return res.json();
     })
     .then((res)=>{
+        
         signUp_response_message.innerHTML = res.message;
     })
     .catch((error)=>{
