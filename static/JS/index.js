@@ -25,10 +25,10 @@ function continuePage(entries){
         if(entry.isIntersecting){
             if(nextPage != null && fetching == false){
                 if(!keyword_value){
-                    let url = `/api/attractions?page=${nextPage}`;
+                    const url = `/api/attractions?page=${nextPage}`;
                     fetchData(url);
                 }else{
-                    let url = `/api/attractions?page=${nextPage}&keyword=${keyword_value}`;                  
+                    const url = `/api/attractions?page=${nextPage}&keyword=${keyword_value}`;                  
                     fetchKeyword(url);
                 }
             }
@@ -42,7 +42,7 @@ function continuePage(entries){
 
 
 function checkPage(page){
-    let url = `/api/attractions?page=${page}`;
+    const url = `/api/attractions?page=${page}`;
     fetchData(url);
 };
 
@@ -64,7 +64,7 @@ const button = document.querySelector(".search_btn");
 
 button.addEventListener("click", ()=>{
     keyword_value = keyword.value;
-    let url = `/api/attractions?page=0&keyword=${keyword_value}`;
+    const url = `/api/attractions?page=0&keyword=${keyword_value}`;
     keyword.value = "";
     main.innerHTML = "";
     fetchKeyword(url);

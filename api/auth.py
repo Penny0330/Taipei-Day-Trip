@@ -1,9 +1,9 @@
 from flask import *
 import data.data_connection
+import re
 from flask_bcrypt import Bcrypt
 import jwt
 from datetime import datetime, timedelta
-
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -38,6 +38,21 @@ def signup():
             return jsonify({
                 "error": True,
                 "message": "有欄位空白，未填寫"
+            })
+        elif len(name) < 1 or len(name) > 8:
+            return jsonify({
+                "error": True,
+                "message": "姓名長度須介於1-8個字元"
+            })
+        elif not re.match("^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$", email):
+            return jsonify({
+                "error": True,
+                "message": "電子信箱格式錯誤"
+            })
+        elif len(password) < 6 or len(password) > 10:
+            return jsonify({
+                "error": True,
+                "message": "密碼長度須介於6-10個字元"
             })
         else:
             cur.execute(
@@ -103,6 +118,16 @@ def signin():
                 "error": True,
                 "message": "登入資料未輸入完整"
             })
+        elif not re.match("^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$", email):
+            return jsonify({
+                "error": True,
+                "message": "電子信箱格式錯誤"
+            })
+        elif len(password) < 6 or len(password) > 10:
+            return jsonify({
+                "error": True,
+                "message": "密碼長度須介於6-10個字元"
+            })
         else:
             cur.execute(
                 "SELECT * FROM `member` WHERE `email` = %s", [email])
@@ -115,7 +140,8 @@ def signin():
                                         "email": user[2], },
                                        jwt_key,
                                        algorithm="HS256")
-                    response = make_response(jsonify({"ok": True}))
+                    response = make_response(
+                        jsonify({"ok": True}))
                     outdate = datetime.utcnow() + timedelta(days=7)
                     response.set_cookie(
                         key="token", value=token, expires=outdate)

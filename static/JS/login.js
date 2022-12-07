@@ -1,7 +1,20 @@
+// ----- side_navbar -----
+const side_navbar = document.querySelector(".side_navbar");
+const side_link = document.querySelector(".side_link");
+const side_name = document.querySelector(".side_name");
+const side_link_booking = document.querySelector(".side_link_booking");
+const side_link_login = document.querySelector(".side_link_login");
+const side_link_logout = document.querySelector(".side_link_logout")
+const side_logo = document.querySelector(".side_logo")
+
+side_logo.addEventListener("click", ()=>{
+    side_link.classList.toggle("side_link_open");
+});
+
 // ----- check status -----
 const top_link_logout = document.querySelector(".top_link_logout");
 const top_link_login = document.querySelector(".top_link_login");
-
+let top_name = document.querySelector(".top_name")
 window.onload = function(){
     fetch("/api/user/auth",{
         method: "GET",
@@ -10,8 +23,15 @@ window.onload = function(){
         return res.json();
     }).then((res)=>{
         if(res.data){
+            console.log(res.data.name)
             top_link_logout.style.display = "block";
+            top_name.innerHTML = `${res.data.name}，您好`;
+            top_link_logout.innerHTML = "( 登出 )";
             top_link_login.style.display = "none";
+
+            side_name.innerHTML = `${res.data.name}，您好`;
+            side_link_login.style.display = "none";
+            side_link_logout.innerHTML = "( 登出 )";
         }else{
             return
         }
@@ -25,6 +45,12 @@ const signIn = document.querySelector(".signIn");
 const overlay = document.querySelector(".overlay");
 
 login_button.addEventListener("click", ()=>{
+    signIn.style.display = "block";
+    signIn.classList.add("appear");
+    overlay.style.display = "block";
+});
+
+side_link_login.addEventListener("click", ()=>{
     signIn.style.display = "block";
     signIn.classList.add("appear");
     overlay.style.display = "block";
@@ -81,6 +107,7 @@ const signUp_name_message = document.querySelector(".signUp_name_message");
 const signUp_email_message = document.querySelector(".signUp_email_message");
 const signUp_password_message = document.querySelector(".signUp_password_message");
 const signUp_button = document.querySelector(".signUp_button");
+
 signUp_button.classList.add("invalid");
 
 function open_signUp_button(){
@@ -97,6 +124,7 @@ function close_signUp_button(){
 
 signUp_name.addEventListener("input", ()=>{
     checkName_signUp = false;
+
     if(signUp_name.value == ""){
         signUp_name_message.innerHTML = "請輸入姓名";
         checkName_signUp = false;
@@ -116,12 +144,14 @@ signUp_name.addEventListener("input", ()=>{
     }else{
         close_signUp_button()
     }
+
     return checkName_signUp;
 });
 
 
 signUp_email.addEventListener("input", ()=>{
     checkEmail_signUp = false;
+
     if(signUp_email.value == ""){
         signUp_email_message.innerHTML = "請輸入電子信箱";
         checkEmail_signUp = false;
@@ -141,11 +171,13 @@ signUp_email.addEventListener("input", ()=>{
     }else{
         close_signUp_button()
     }
+
     return checkEmail_signUp;
 });
 
 signUp_password.addEventListener("input", ()=>{
     checkPassword_signUp = false;
+
     if(signUp_password.value == ""){
         signUp_password_message.innerHTML = "請輸入密碼";
         checkPassword_signUp = false;
@@ -158,11 +190,13 @@ signUp_password.addEventListener("input", ()=>{
             checkPassword_signUp = true;
         }
     }
-        if(checkName_signUp && checkEmail_signUp && checkPassword_signUp){
-            open_signUp_button()
-        }else{
-            close_signUp_button()
-        }
+
+    if(checkName_signUp && checkEmail_signUp && checkPassword_signUp){
+        open_signUp_button()
+    }else{
+        close_signUp_button()
+    }
+
     return checkPassword_signUp;
 });
  
@@ -210,6 +244,7 @@ function close_signIn_button(){
 
 signIn_email.addEventListener("input", ()=>{
     checkEmail_signIn = false;
+
     if(signIn_email.value == ""){
         signIn_email_message.innerHTML = "請輸入電子信箱";
         checkEmail_signIn = false;
@@ -229,11 +264,13 @@ signIn_email.addEventListener("input", ()=>{
     }else{
         close_signIn_button()
     }
+
     return checkEmail_signIn;
 });
 
 signIn_password.addEventListener("input", ()=>{
     checkPassword_signIn = false;
+
     if(signIn_password.value == ""){
         signIn_password_message.innerHTML = "請輸入密碼";
         checkPassword_signIn = false;
@@ -251,6 +288,7 @@ signIn_password.addEventListener("input", ()=>{
     }else{
         close_signIn_button()
     }
+    
     return checkPassword_signIn;
 });
 
@@ -276,6 +314,19 @@ signIn_button.addEventListener("click", ()=>{
 
 // ----- signOut button -----
 top_link_logout.addEventListener("click", ()=>{
+    fetch("/api/user/auth",{
+        method: "DELETE",
+        headers:{"Content-Type":"application/json"}
+    }).then((res)=>{
+       return res.json()
+    }).then((res)=>{
+        if(res.ok){
+            window.location.reload();
+        }
+    })
+});
+
+side_link_logout.addEventListener("click", ()=>{
     fetch("/api/user/auth",{
         method: "DELETE",
         headers:{"Content-Type":"application/json"}

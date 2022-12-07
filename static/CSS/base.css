@@ -1,0 +1,458 @@
+:root {
+    --white: #fff;
+    --green: #448899;
+    --light_green: rgba(68, 136, 153, 0.5);
+    --deep_gray: #666666;
+    --light_gray: #757575;
+
+    --nav_shadow: 0 3px 5px rgba(104, 104, 104, 0.8);
+
+    --overlay: rgba(0, 0, 0, 0.25);
+    --login_box_shadow: 0px 4px 60px #AAAAAA;
+    --login_before: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+    --response_message: rgba(204, 92, 92, 0.9);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans TC';
+}
+
+.side_navbar{
+    justify-self: end;
+    margin-right: 10px;
+    
+    position: relative;
+
+    display: none;
+}
+
+.side_logo{
+    color: var(--green);
+    width: 30px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.side_link{
+    display: none;
+}
+
+.side_link_open{
+    position: absolute;
+    top: 41.5px;
+    right: -10px;
+
+    width: 150px;
+    height: 100vh;
+    padding: 15px 0;
+
+    border-radius: 5px;
+
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 5px 5px rgba(246, 246, 248, 0.9);
+    color: var(--white);
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+
+    animation: appear_side_link .4s ease-in-out;
+}
+
+@keyframes appear_side_link {
+    0% {
+        right: -30px;
+        opacity: 0;
+    }
+    25% {
+        opacity: 0.25;
+    }
+    50%{
+        opacity: 0.75;
+    }
+    100% {
+        right: -10px;
+        opacity: 1;
+    }
+}
+
+.side_name{
+    font-size: 20px;
+}
+
+.side_link_booking, .side_link_login, .side_link_logout{
+    cursor: pointer;
+}
+
+.side_link_booking:hover, .side_link_login:hover, .side_link_logout:hover{
+    color: #91d8ea;
+}
+
+/* ----- nav ----- */
+nav{
+    display: grid;
+    grid-template-columns: auto minmax(300px, 1200px) auto;
+
+
+    position: sticky;
+    top: 0;
+    z-index: 5;
+
+    background-color: var(--white);
+    box-shadow: var(--nav_shadow);
+}
+
+nav > .top_link{
+    grid-column: 2/3;
+
+    display: grid;
+    /* grid-template-columns: repeat(2, 1fr); */
+    grid-template-columns: 160px auto;
+    align-items: center;
+}
+
+nav > .top_link > h1{
+    font-size: 30px;
+
+    margin-left: 10px;
+}
+
+nav > .top_link > h1 > a{
+    text-decoration: none;
+    color: var(--green);
+}
+
+nav > .top_link > .link{
+    justify-self: end;
+    display: flex;
+    padding: 10px;
+}
+
+nav > .top_link > .link > .top_link_booking, .top_link_login{
+    color: var(--deep_gray);
+    cursor: pointer;
+
+    margin: 0 15px 0 0;
+}
+
+.top_link_logout{
+    color: var(--deep_gray);
+    cursor: pointer;
+
+    margin: 0 6px 0 0;
+}
+
+.top_name{
+    color: var(--deep_gray);
+    margin: 0;
+}
+
+nav > .top_link > h1 > a:hover{
+    color: var(--light_green);
+}
+
+nav > .top_link > .link > .top_link_booking:hover, .top_link_login:hover, .top_link_logout:hover{
+    color: var(--light_green);
+}
+
+nav > .top_link > .link > .top_link_logout{
+    display: none;
+}
+
+/* ----- top button ----- */
+#top_btn{
+    display: none;
+
+    position: fixed;
+    right: 15px;
+    bottom: 50px;
+    z-index: 10;
+
+    background-color: var(--white);
+    color: var(--light_green);
+    border: 4px solid var(--light_green);
+
+    cursor: pointer;
+    font-size: 25px;
+
+    padding: 5px 12px;
+    border-radius: 50%;
+}
+
+#top_btn:hover{
+    color: var(--green);
+    border: 4px solid var(--green);
+}
+
+/* ----- footer ----- */
+footer{
+    background: var(--light_gray);
+    height: 104px;
+
+    display: grid;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--white);
+    font-weight: bold;
+}
+
+
+/* ----- login & logout bgc ----- */
+.overlay{
+    width: 100%;
+    height: 100vh;
+    background-color: var(--overlay);
+    position: fixed;
+    top: 0;
+    z-index: 8;
+
+    display: none;
+}
+
+/*----- SignIn -----*/
+.signIn{
+    width: 340px;
+
+    position: fixed;
+    justify-self: center;
+    top: 5rem;
+    
+    z-index: 10;
+
+    background-color: var(--white);
+    box-shadow: var(--login_box_shadow);
+    border-radius: 6px;
+    text-align: center;
+
+    display: grid;
+    padding: 15px;
+    justify-items: center;
+
+    display: none;
+}
+
+.signIn::before{
+    content: "";
+    width: 100%;
+    height: 10px;
+    background: var(--login_before);
+    border-radius: 6px 6px 0 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.appear{
+    animation: loginBoxAppear .2s ease-in;
+}
+
+@keyframes loginBoxAppear {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    25% {
+        transform: scale(0.25);
+        opacity: 0.25;
+    }
+    50% {
+        transform: scale(0.5);
+        opacity: 0.5;
+    }
+    75%{
+        transform: scale(0.75);
+        opacity: 0.75;
+    }
+    100% {
+        transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+.signIn > .signIn_title{
+    color: var(--deep_gray);
+    margin: 10px 0px 15px;
+}
+
+.signIn > .login_icon_close{
+    position: absolute;
+    top: 25px;
+    right: 17px;
+
+    border: 1px solid var(--light_gray);
+    border-radius: 50%;
+    padding: 2px;
+
+    cursor: pointer;
+}
+
+.signIn > .signIn_email, .signIn_password{
+    width: 310px;
+    height: 47px;
+    margin: 5px 0;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    outline: none;
+}
+
+.signIn > .signIn_button{
+    width: 100%;
+    font-size: 19px;
+    border: none;
+    border-radius: 5px;
+
+    color: var(--white);
+
+    padding: 10px 20px;
+    margin: 10px 0;
+}
+
+.signIn > .signIn_change_message{
+    color: var(--deep_gray);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.signIn > .signIn_change_message:hover{
+    color: var(--light_green);
+}
+
+.signIn > .signIn_email_message, .signIn_password_message{
+    font-size: 14px;
+    color: var(--response_message);
+    text-align: start;
+    padding-left: 10px;
+}
+
+.signIn > .signIn_response_message{
+    width: 100%;
+    color: var(--white);
+    background-color: var(--response_message);
+    margin: 10px 0;
+}
+
+/*----- SignUp -----*/
+.signUp{
+    width: 340px;
+
+    position: fixed;
+    justify-self: center;
+    top: 5rem;
+    
+    z-index: 10;
+
+    background-color: var(--white);
+    box-shadow: var(--login_box_shadow);
+    border-radius: 6px;
+    text-align: center;
+
+    display: grid;
+    padding: 15px;
+    justify-items: center;
+
+    display: none;
+}
+
+.signUp::before{
+    content: "";
+    width: 100%;
+    height: 10px;
+    background: var(--login_before);
+    border-radius: 6px 6px 0 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.signUp > .signUp_title{
+    color: var(--deep_gray);
+    margin: 10px 0px 15px;
+}
+
+.signUp > .login_icon_close{
+    position: absolute;
+    top: 25px;
+    right: 17px;
+
+    border: 1px solid var(--light_gray);
+    border-radius: 50%;
+    padding: 2px;
+
+    cursor: pointer;
+}
+
+.signUp >.signUp_name, .signUp_email, .signUp_password{
+    width: 310px;
+    height: 47px;
+    margin: 5px 0;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    outline: none;
+}
+
+.signUp > .signUp_button{
+    width: 100%;
+    font-size: 19px;
+    border: none;
+    border-radius: 5px;
+
+    color: var(--white);
+
+    padding: 10px 20px;
+    margin: 10px 0;
+}
+
+.signUp > .signUp_change_message{
+    color: var(--deep_gray);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.signUp > .signUp_change_message:hover{
+    color: var(--light_green);
+}
+
+.signUp_name_message, .signUp_email_message, .signUp_password_message{
+    font-size: 14px;
+    color: var(--response_message);
+    text-align: start;
+    padding-left: 10px;
+}
+
+.signUp_response_message{
+    width: 100%;
+    color: var(--white);
+    background-color: var(--response_message);
+    margin: 10px 0px;
+}
+
+/* button change */
+.valid{
+    cursor: pointer;
+    background-color: var(--green);
+}
+
+.invalid{
+    cursor: not-allowed;
+    background-color: var(--light_green);
+}
+
+@media screen and (max-width: 500px) {
+    nav > .top_link > .link{
+        display: none;
+    }
+
+    nav > .top_link > .side_navbar{
+        display: block;
+    }
+}
+
