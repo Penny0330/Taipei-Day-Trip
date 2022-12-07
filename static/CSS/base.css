@@ -45,14 +45,13 @@
     top: 41.5px;
     right: -10px;
 
-    width: 150px;
+    width: 100vw;
     height: 100vh;
     padding: 15px 0;
 
     border-radius: 5px;
 
     background-color: rgba(0, 0, 0, 0.8);
-    box-shadow: 0 5px 5px rgba(246, 246, 248, 0.9);
     color: var(--white);
 
     display: flex;
@@ -65,13 +64,16 @@
 
 @keyframes appear_side_link {
     0% {
-        right: -30px;
+        right: -100vw;
         opacity: 0;
     }
     25% {
         opacity: 0.25;
     }
     50%{
+        opacity: 0.5;
+    }
+    75%{
         opacity: 0.75;
     }
     100% {

@@ -31,7 +31,7 @@ window.onload = function(){
 
             side_name.innerHTML = `${res.data.name}，您好`;
             side_link_login.style.display = "none";
-            side_link_logout.innerHTML = "( 登出 )";
+            side_link_logout.innerHTML = "登出系統";
         }else{
             return
         }
