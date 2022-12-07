@@ -56,14 +56,14 @@ nav > .top_link > h1 > a{
 
 nav > .top_link > .link{
     justify-self: end;
-
+    display: flex;
     padding: 10px 0px;
 }
 
-nav > .top_link > .link > a{
-    text-decoration: none;
+nav > .top_link > .link > .top_link_booking, .top_link_login, .top_link_logout{
     color: var(--deep_gray);
-
+    cursor: pointer;
+  
     margin: 0 6px;
 }
 
@@ -71,8 +71,12 @@ nav > .top_link > h1 > a:hover{
     color: var(--light_green);
 }
 
-nav > .top_link > .link > a:hover{
+nav > .top_link > .link > .top_link_booking:hover, .top_link_login:hover, .top_link_logout:hover{
     color: var(--light_green);
+}
+
+nav > .top_link > .link > .top_link_logout{
+    display: none;
 }
 
 #top_btn{
@@ -187,11 +191,17 @@ main > .top > .left > .dotAll > .dot{
     background-color: var(--white);
     display: inline-block;
     margin: 0 2px;
+    cursor: pointer;
 
     transition: background-color 1s ease;
 }
 
-main > .top > .left > .dotAll >.active{
+main > .top > .left > .dotAll > .active{
+    border: 1px solid var(--white);
+    background-color: var(--deep_gray);
+}
+
+main > .top > .left > .dotAll > .dot:hover{
     border: 1px solid var(--white);
     background-color: var(--deep_gray);
 }
@@ -234,7 +244,7 @@ main > .top > .right > .bookingForm > .price{
 main > .top > .right > .bookingForm > .time{
     display: flex;
     align-items: center;
-    accent-color: var(--green)
+    accent-color: var(--green);
 }
 
 main > .top > .right > .bookingForm > .time > .rdobutton_label{
@@ -276,6 +286,11 @@ main > .bottom > .description, .address, .direction{
     padding: 10px 10px 20px 10px;
     color: var(--deep_gray);
     line-height: 23.17px;
+}
+
+main > .bottom > .map{
+    margin: 15px 0 0 10px;
+    border-radius: 5px;
 }
 
 .addressTitle, .directionTitle{

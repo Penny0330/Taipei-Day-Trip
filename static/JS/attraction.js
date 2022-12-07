@@ -1,9 +1,9 @@
-let url_Id = location.pathname.split("/")[2];
+const url_Id = location.pathname.split("/")[2];
+const imgAll = document.querySelector(".imgAll");
+const dotAll = document.querySelector(".dotAll");
 let attractionImg;
 let imgCount;
 let imgData;
-let imgAll = document.querySelector(".imgAll");
-let dotAll = document.querySelector(".dotAll");
 let images;
 let dots;
 let dotSpan;
@@ -20,26 +20,33 @@ function getAttraction_Id(url_Id){
     .then((result)=>{
         data = result.data;
 
-        let headTitle = document.querySelector("title");
-        headTitle.innerHTML = data["name"];
+        const headTitle = document.querySelector("title");
+        headTitle.innerHTML = data.name;
 
-        let title = document.querySelector(".title");
-        title.innerHTML = data["name"];
+        const title = document.querySelector(".title");
+        title.innerHTML = data.name;
 
-        let info = document.querySelector(".info");
-        info.innerHTML = `${data["category"]} at ${data["mrt"]}`;
+        const info = document.querySelector(".info");
+        if(data.mrt == null){
+            info.innerHTML = `${data.category} at 無捷運可到達`;
+        }else{
+            info.innerHTML = `${data.category} at ${data.mrt}`;
+        }
+    
+        const description = document.querySelector(".description");
+        description.innerHTML= data.description;
 
-        let description = document.querySelector(".description");
-        description.innerHTML= data["description"];
+        const addressContent = document.querySelector(".addressContent");
+        addressContent.innerHTML = data.address;
 
-        let addressContent = document.querySelector(".addressContent");
-        addressContent.innerHTML = data["address"];
+        const directionContent = document.querySelector(".directionContent");
+        directionContent.innerHTML = data.transport;
 
-        let directionContent = document.querySelector(".directionContent");
-        directionContent.innerHTML = data["transport"];
+        const map = document.querySelector(".map");
+        map.src = `https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=${data.address}(${data.name})&z=16&output=embed&t=`;
 
-        imgCount = data["images"].length;
-        imgData = data["images"];
+        imgCount = data.images.length;
+        imgData = data.images;
         create_DotImg();
     })
     .catch((error)=>{
@@ -49,7 +56,7 @@ function getAttraction_Id(url_Id){
 
 // ----- create dot、img ----- 
 function create_DotImg(){
-    for(let i = 0; i < imgData.length; i++){
+    for(let i = 0; i < imgCount; i++){
         dotSpan = document.createElement("span");
         dotSpan.setAttribute("class", "dot");
         dotAll.append(dotSpan)
@@ -67,63 +74,76 @@ function create_DotImg(){
     // ----- initial loading -----
     imageIndex = 1;
     showImages(imageIndex);
+
+    // ----- click the dot switch images -----
+    for(let i = 0; i < dots.length; i++){
+        dots[i].addEventListener("click", ()=>{
+            showImages(imageIndex = i + 1);
+        })
+    }
 };
 
 // ----- img-Arrows -----
 function arrowButton(index) {
     showImages(imageIndex += index);
-}
+};
+
 
 function showImages(index) {
     let i;
     
-    if (index > images.length){ 
+    // if currentIndex > imgCount, imageIndex back to startIndex
+    if (index > imgCount){ 
         imageIndex = 1;
     }
+    // if currentIndex < 1, imageIndex back to endIndex
     if (index < 1){
-        imageIndex = images.length;
+        imageIndex = imgCount;
     }
-    for (i = 0; i < images.length; i++) {
+    // all images set display = "none"
+    for (i = 0; i < imgCount; i++) {
         images[i].style.display = "none";
     }
+    // all dots remove CSS.active
     for (i = 0; i < dots.length; i++) {
         dots[i].classList.remove("active");
     }
+    // according to the current index, show  the image and dot
     images[imageIndex-1].style.display = "block";
     dots[imageIndex-1].classList.add("active");
-}
+};
 
 
 // ----- price -----
-let morning = document.getElementById("morning");
-let afternoon = document.getElementById("afternoon");
-let price = document.getElementById("price");
+const morning = document.getElementById("morning");
+const afternoon = document.getElementById("afternoon");
+const price = document.getElementById("price");
 
 morning.addEventListener("click", ()=>{
     price.innerHTML = "新台幣 2000 元";
-})
+});
 
 afternoon.addEventListener("click", ()=>{
     price.innerHTML = "新台幣 2500 元";
-})
+});
 
 // ----- top button -----
-let top_btn = document.getElementById("top_btn");
+const top_btn = document.getElementById("top_btn");
 window.onscroll = function() {
     top_btn.style.display = "block";
-    let height = document.documentElement.scrollTop || document.body.scrollTop;
+    const height = document.documentElement.scrollTop || document.body.scrollTop;
     if(height == 0) {
         top_btn.style.display = "none";
     }
-}
+};
 
-// ----- push the Top-button,back to top ------
+// ----- click the Top-button and back to top ------
 top_btn.addEventListener("click", ()=>{
     window.scrollTo({
         top:0,
         behavior:"smooth"
     })
-})
+});
 
 
 
