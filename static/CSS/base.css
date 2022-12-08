@@ -20,6 +20,83 @@
     font-family: 'Noto Sans TC';
 }
 
+/* ----- nav ----- */
+nav{
+    display: grid;
+    grid-template-columns: auto minmax(300px, 1200px) auto;
+
+
+    position: sticky;
+    top: 0;
+    z-index: 5;
+
+    background-color: var(--white);
+    box-shadow: var(--nav_shadow);
+}
+
+nav > .top_link{
+    grid-column: 2/3;
+
+    display: grid;
+    grid-template-columns: 160px auto;
+    align-items: center;
+}
+
+nav > .top_link > h1{
+    font-size: 30px;
+
+    margin-left: 10px;
+}
+
+nav > .top_link > h1 > a{
+    text-decoration: none;
+    color: var(--green);
+}
+
+nav > .top_link > .link{
+    justify-self: end;
+    display: flex;
+    padding: 10px;
+}
+
+nav > .top_link > .link > .top_link_booking, .top_link_login{
+    color: var(--deep_gray);
+    cursor: pointer;
+
+    margin: 0 15px 0 0;
+}
+
+nav > .top_link > .link > .top_link_logout{
+    color: var(--deep_gray);
+    cursor: pointer;
+
+    margin: 0 6px 0 0;
+}
+
+nav > .top_link > .link > .top_link_logout{
+    display: none;
+}
+
+nav > .top_link > .link > .top_name{
+    color: var(--deep_gray);
+    margin: 0;
+}
+
+nav > .top_link > h1 > a:hover{
+    color: var(--light_green);
+}
+
+nav > .top_link > .link > .top_link_booking:hover, .top_link_login.side_link_booking:hover{
+    color: var(--light_green);
+}
+
+nav > .top_link > .link > .top_link_logout:hover{
+    color: var(--light_green);
+}
+
+
+
+/* nav sidebar */
 .side_navbar{
     justify-self: end;
     margin-right: 10px;
@@ -38,6 +115,7 @@
 
 .side_link{
     display: none;
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .side_link_open{
@@ -46,7 +124,7 @@
     right: -10px;
 
     width: 100vw;
-    height: 100vh;
+    height: 150vh;
     padding: 15px 0;
 
     border-radius: 5px;
@@ -84,6 +162,7 @@
 
 .side_name{
     font-size: 20px;
+    color: #91d8ea;
 }
 
 .side_link_booking, .side_link_login, .side_link_logout{
@@ -92,77 +171,6 @@
 
 .side_link_booking:hover, .side_link_login:hover, .side_link_logout:hover{
     color: #91d8ea;
-}
-
-/* ----- nav ----- */
-nav{
-    display: grid;
-    grid-template-columns: auto minmax(300px, 1200px) auto;
-
-
-    position: sticky;
-    top: 0;
-    z-index: 5;
-
-    background-color: var(--white);
-    box-shadow: var(--nav_shadow);
-}
-
-nav > .top_link{
-    grid-column: 2/3;
-
-    display: grid;
-    /* grid-template-columns: repeat(2, 1fr); */
-    grid-template-columns: 160px auto;
-    align-items: center;
-}
-
-nav > .top_link > h1{
-    font-size: 30px;
-
-    margin-left: 10px;
-}
-
-nav > .top_link > h1 > a{
-    text-decoration: none;
-    color: var(--green);
-}
-
-nav > .top_link > .link{
-    justify-self: end;
-    display: flex;
-    padding: 10px;
-}
-
-nav > .top_link > .link > .top_link_booking, .top_link_login{
-    color: var(--deep_gray);
-    cursor: pointer;
-
-    margin: 0 15px 0 0;
-}
-
-.top_link_logout{
-    color: var(--deep_gray);
-    cursor: pointer;
-
-    margin: 0 6px 0 0;
-}
-
-.top_name{
-    color: var(--deep_gray);
-    margin: 0;
-}
-
-nav > .top_link > h1 > a:hover{
-    color: var(--light_green);
-}
-
-nav > .top_link > .link > .top_link_booking:hover, .top_link_login:hover, .top_link_logout:hover{
-    color: var(--light_green);
-}
-
-nav > .top_link > .link > .top_link_logout{
-    display: none;
 }
 
 /* ----- top button ----- */
@@ -230,6 +238,7 @@ footer{
     box-shadow: var(--login_box_shadow);
     border-radius: 6px;
     text-align: center;
+    letter-spacing: 1px;
 
     display: grid;
     padding: 15px;
@@ -302,6 +311,22 @@ footer{
     border-radius: 5px;
     border: 1px solid #cccccc;
     outline: none;
+
+    letter-spacing: 1.5px;
+}
+
+.signIn > .signIn_password_box{
+    position: relative;
+}
+
+#eye_signIn{
+    position: absolute;
+    top: 35%;
+    right: 5%;
+
+    cursor: pointer;
+
+    color: var(--light_gray);
 }
 
 .signIn > .signIn_button{
@@ -354,6 +379,7 @@ footer{
     box-shadow: var(--login_box_shadow);
     border-radius: 6px;
     text-align: center;
+    letter-spacing: 1px;
 
     display: grid;
     padding: 15px;
@@ -399,6 +425,21 @@ footer{
     border-radius: 5px;
     border: 1px solid #cccccc;
     outline: none;
+    letter-spacing: 1.5px;
+}
+
+.signUp > .signUp_password_box{
+    position: relative;
+}
+
+#eye_signUp{
+    position: absolute;
+    top: 35%;
+    right: 5%;
+
+    cursor: pointer;
+
+    color: var(--light_gray);
 }
 
 .signUp > .signUp_button{

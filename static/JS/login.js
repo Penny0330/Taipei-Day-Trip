@@ -4,8 +4,8 @@ const side_link = document.querySelector(".side_link");
 const side_name = document.querySelector(".side_name");
 const side_link_booking = document.querySelector(".side_link_booking");
 const side_link_login = document.querySelector(".side_link_login");
-const side_link_logout = document.querySelector(".side_link_logout")
-const side_logo = document.querySelector(".side_logo")
+const side_link_logout = document.querySelector(".side_link_logout");
+const side_logo = document.querySelector(".side_logo");
 
 side_logo.addEventListener("click", ()=>{
     side_link.classList.toggle("side_link_open");
@@ -23,15 +23,13 @@ window.onload = function(){
         return res.json();
     }).then((res)=>{
         if(res.data){
-            console.log(res.data.name)
+            top_link_login.style.display = "none";
             top_link_logout.style.display = "block";
             top_name.innerHTML = `${res.data.name}，您好`;
-            top_link_logout.innerHTML = "( 登出 )";
-            top_link_login.style.display = "none";
-
-            side_name.innerHTML = `${res.data.name}，您好`;
+            
             side_link_login.style.display = "none";
             side_link_logout.innerHTML = "登出系統";
+            side_name.innerHTML = `${res.data.name}，您好`;
         }else{
             return
         }
@@ -98,6 +96,37 @@ signUp_change_message.addEventListener("click", ()=>{
     signIn.style.display = "block";
 });
 
+
+// ----- password eyes -----
+const eye_signIn = document.getElementById("eye_signIn");
+
+eye_signIn.addEventListener("click", (e)=>{
+    let eye = e.target;
+    if(eye.classList.contains("fa-eye")){
+        eye.classList.remove("fa-eye");
+        eye.classList.add("fa-eye-slash");
+        signIn_password.setAttribute("type", "text");
+    }else{
+        eye.classList.add("fa-eye");
+        eye.classList.remove("fa-eye-slash");
+        signIn_password.setAttribute("type", "password");
+    }
+});
+
+const eye_signUp = document.getElementById("eye_signUp");
+
+eye_signUp.addEventListener("click", (e)=>{
+    let eye = e.target;
+    if(eye.classList.contains("fa-eye")){
+        eye.classList.remove("fa-eye");
+        eye.classList.add("fa-eye-slash");
+        signUp_password.setAttribute("type", "text");
+    }else{
+        eye.classList.add("fa-eye");
+        eye.classList.remove("fa-eye-slash");
+        signUp_password.setAttribute("type", "password");
+    }
+});
 
 // ----- signup button -----
 let checkName_signUp;

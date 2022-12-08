@@ -12,6 +12,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/2d1cabe1bc.js" crossorigin="anonymous"></script>
+
     <!-- local css -->
     {% block css %}{% endblock css %}
 
@@ -26,7 +29,7 @@
                     <div class="top_link_booking">預定行程</div>
                     <div class="top_link_login">登入/註冊</div>
                     <div class="top_name"></div>
-                    <div class="top_link_logout">登出</div>
+                    <div class="top_link_logout">( 登出 )</div>
                 </div>
                 <div class="side_navbar">
                     <img class="side_logo" src="/images/hamburger.svg" alt="">
@@ -45,7 +48,10 @@
             <img class="login_icon_close" src="/images/icon_close.png" alt="">
             <input class="signIn_input signIn_email" type="email" name="email" placeholder="請輸入電子信箱">
             <div class="signIn_email_message"></div>
-            <input class="signIn_input signIn_password" type="password" name="password" placeholder="請輸入密碼 (須介於6-10個字元)">
+            <div class="signIn_password_box">
+                <input class="signIn_input signIn_password" type="password" name="password" placeholder="請輸入密碼 (須介於6-10個字元)">
+                <i class="fa-solid fa-eye" id="eye_signIn"></i>
+            </div>
             <div class="signIn_password_message"></div>
             <button class="signIn_button" disabled>登入帳戶</button>
             <div class="signIn_response_message"></div>
@@ -59,7 +65,10 @@
             <div class="signUp_name_message"></div>
             <input class="signUp_input signUp_email" type="email" name="email" placeholder="請輸入電子信箱" required>
             <div class="signUp_email_message"></div>
-            <input class="signUp_input signUp_password" type="password" name="password" placeholder="請輸入密碼 (須介於6-10個字元)" required>
+            <div class="signUp_password_box">
+                <input class="signUp_input signUp_password" type="password" name="password" placeholder="請輸入密碼 (須介於6-10個字元)" required>
+                <i class="fa-solid fa-eye" id="eye_signUp"></i>
+            </div>
             <div class="signUp_password_message"></div>
             <button type="submit" class="signUp_button" disabled>註冊新帳戶</button>
             <div class="signUp_response_message"></div>
