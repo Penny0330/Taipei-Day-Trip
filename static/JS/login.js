@@ -1,3 +1,10 @@
+// -----loading -----
+const container = document.querySelector(".container");
+window.addEventListener("load", vanish);
+function vanish(){
+    container.classList.add("disappear");
+}
+
 // ----- side_navbar -----
 const side_navbar = document.querySelector(".side_navbar");
 const side_link = document.querySelector(".side_link");
@@ -156,14 +163,17 @@ signUp_name.addEventListener("input", ()=>{
 
     if(signUp_name.value == ""){
         signUp_name_message.innerHTML = "請輸入姓名";
+        signUp_name.style.border = "1px solid red";    
         checkName_signUp = false;
     }else{
         if(signUp_name.value.length < 1 || signUp_name.value.length > 8){
             signUp_name_message.innerHTML = "須介於1-8個字元";
+            signUp_name.style.border = "1px solid red";
             checkName_signUp = false;
         }
         else{
             signUp_name_message.innerHTML = "";
+            signUp_name.style.border = "1px solid #cccccc";
             checkName_signUp = true;
         }
     }
@@ -183,14 +193,17 @@ signUp_email.addEventListener("input", ()=>{
 
     if(signUp_email.value == ""){
         signUp_email_message.innerHTML = "請輸入電子信箱";
+        signUp_email.style.border = "1px solid red";
         checkEmail_signUp = false;
     }else{
         let reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
         if(!reg.test(signUp_email.value)){
             signUp_email_message.innerHTML = "電子信箱格式錯誤";
+            signUp_email.style.border = "1px solid red";
             checkEmail_signUp = false;
         }else{
             signUp_email_message.innerHTML = "";
+            signUp_email.style.border = "1px solid #cccccc";
             checkEmail_signUp = true;
         }
     }
@@ -209,13 +222,16 @@ signUp_password.addEventListener("input", ()=>{
 
     if(signUp_password.value == ""){
         signUp_password_message.innerHTML = "請輸入密碼";
+        signUp_password.style.border = "1px solid red";
         checkPassword_signUp = false;
     }else{
         if(signUp_password.value.length < 6 || signUp_password.value.length > 10){
             signUp_password_message.innerHTML = "須介於6-10個字元";
+            signUp_password.style.border = "1px solid red";
             checkPassword_signUp = false;
         }else{
             signUp_password_message.innerHTML = "";
+            signUp_password.style.border = "1px solid #cccccc";
             checkPassword_signUp = true;
         }
     }
@@ -276,14 +292,17 @@ signIn_email.addEventListener("input", ()=>{
 
     if(signIn_email.value == ""){
         signIn_email_message.innerHTML = "請輸入電子信箱";
+        signIn_email.style.border = "1px solid red";
         checkEmail_signIn = false;
     }else{
         let reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
         if(!reg.test(signIn_email.value)){
             signIn_email_message.innerHTML = "電子信箱格式錯誤";
+            signIn_email.style.border = "1px solid red";
             checkEmail_signIn = false;
         }else{
             signIn_email_message.innerHTML = "";
+            signIn_email.style.border = "1px solid #cccccc";
             checkEmail_signIn = true;
         }
     }
@@ -302,13 +321,16 @@ signIn_password.addEventListener("input", ()=>{
 
     if(signIn_password.value == ""){
         signIn_password_message.innerHTML = "請輸入密碼";
+        signIn_password.style.border = "1px solid red";
         checkPassword_signIn = false;
     }else{
         if(signIn_password.value.length < 6 || signIn_password.value.length > 10){
             signIn_password_message.innerHTML = "須介於6-10個字元";
+            signIn_password.style.border = "1px solid red";
             checkPassword_signIn = false;
         }else{
             signIn_password_message.innerHTML = "";
+            signIn_password.style.border = "1px solid #cccccc";
             checkPassword_signIn = true;
         }
     }

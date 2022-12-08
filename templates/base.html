@@ -19,68 +19,81 @@
     {% block css %}{% endblock css %}
 
 </head>
-    <body>    <div id="root">
-        <div class="overlay"></div>
-
-        <nav>
-            <div class="top_link">
-                <h1><a href="/">台北一日遊</a></h1>
-                <div class="link">
-                    <div class="top_link_booking">預定行程</div>
-                    <div class="top_link_login">登入/註冊</div>
-                    <div class="top_name"></div>
-                    <div class="top_link_logout">( 登出 )</div>
+    <body>    
+        <div id="root">
+            
+            <div class="container">
+                <div class="text">
+                    <h1>Loading...</h1>
                 </div>
-                <div class="side_navbar">
-                    <img class="side_logo" src="/images/hamburger.svg" alt="">
-                    <div class="side_link">
-                        <div class="side_name"></div>
-                        <div class="side_link_booking">預定行程</div>
-                        <div class="side_link_login">登入/註冊</div>
-                        <div class="side_link_logout"></div>
+                <div class="loading">
+                    <div class="line_box">
+                        <div class="line"></div>
                     </div>
                 </div>
             </div>
-        </nav>
 
-        <div class="signIn">
-            <h2 class="signIn_title">登入會員帳號</h2>
-            <img class="login_icon_close" src="/images/icon_close.png" alt="">
-            <input class="signIn_input signIn_email" type="email" name="email" placeholder="請輸入電子信箱">
-            <div class="signIn_email_message"></div>
-            <div class="signIn_password_box">
-                <input class="signIn_input signIn_password" type="password" name="password" placeholder="請輸入密碼 (須介於6-10個字元)">
-                <i class="fa-solid fa-eye" id="eye_signIn"></i>
+            <div class="overlay"></div>
+
+            <nav>
+                <div class="top_link">
+                    <h1><a href="/">台北一日遊</a></h1>
+                    <div class="link">
+                        <div class="top_link_booking">預定行程</div>
+                        <div class="top_link_login">登入/註冊</div>
+                        <div class="top_name"></div>
+                        <div class="top_link_logout">( 登出 )</div>
+                    </div>
+                    <div class="side_navbar">
+                        <img class="side_logo" src="/images/hamburger.svg" alt="">
+                        <div class="side_link">
+                            <div class="side_name"></div>
+                            <div class="side_link_booking">預定行程</div>
+                            <div class="side_link_login">登入/註冊</div>
+                            <div class="side_link_logout"></div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="signIn">
+                <h2 class="signIn_title">登入會員帳號</h2>
+                <img class="login_icon_close" src="/images/icon_close.png" alt="">
+                <input class="signIn_input signIn_email" type="email" name="email" placeholder="請輸入電子信箱">
+                <div class="signIn_email_message"></div>
+                <div class="signIn_password_box">
+                    <input class="signIn_input signIn_password" type="password" name="password" placeholder="請輸入密碼 (須介於6-10個字元)">
+                    <i class="fa-solid fa-eye" id="eye_signIn"></i>
+                </div>
+                <div class="signIn_password_message"></div>
+                <button class="signIn_button" disabled>登入帳戶</button>
+                <div class="signIn_response_message"></div>
+                <div class="signIn_change_message">還沒有帳戶？點此註冊</div>
             </div>
-            <div class="signIn_password_message"></div>
-            <button class="signIn_button" disabled>登入帳戶</button>
-            <div class="signIn_response_message"></div>
-            <div class="signIn_change_message">還沒有帳戶？點此註冊</div>
-        </div>
 
-        <div class="signUp">
-            <h2 class="signUp_title">註冊會員帳號</h2>
-            <img class="login_icon_close" src="/images/icon_close.png" alt="close">
-            <input class="signUp_input signUp_name" type="text" name="name"  placeholder="請輸入姓名 (須介於1-8個字元)" required>
-            <div class="signUp_name_message"></div>
-            <input class="signUp_input signUp_email" type="email" name="email" placeholder="請輸入電子信箱" required>
-            <div class="signUp_email_message"></div>
-            <div class="signUp_password_box">
-                <input class="signUp_input signUp_password" type="password" name="password" placeholder="請輸入密碼 (須介於6-10個字元)" required>
-                <i class="fa-solid fa-eye" id="eye_signUp"></i>
+            <div class="signUp">
+                <h2 class="signUp_title">註冊會員帳號</h2>
+                <img class="login_icon_close" src="/images/icon_close.png" alt="close">
+                <input class="signUp_input signUp_name" type="text" name="name"  placeholder="請輸入姓名 (須介於1-8個字元)" required>
+                <div class="signUp_name_message"></div>
+                <input class="signUp_input signUp_email" type="email" name="email" placeholder="請輸入電子信箱" required>
+                <div class="signUp_email_message"></div>
+                <div class="signUp_password_box">
+                    <input class="signUp_input signUp_password" type="password" name="password" placeholder="請輸入密碼 (須介於6-10個字元)" required>
+                    <i class="fa-solid fa-eye" id="eye_signUp"></i>
+                </div>
+                <div class="signUp_password_message"></div>
+                <button type="submit" class="signUp_button" disabled>註冊新帳戶</button>
+                <div class="signUp_response_message"></div>
+                <div class="signUp_change_message">已經有帳戶了？點此登入</div>
             </div>
-            <div class="signUp_password_message"></div>
-            <button type="submit" class="signUp_button" disabled>註冊新帳戶</button>
-            <div class="signUp_response_message"></div>
-            <div class="signUp_change_message">已經有帳戶了？點此登入</div>
-        </div>
 
-        <div id="top_btn">↑</div>
-        
-        {% block content %}{% endblock content %}
+            <div id="top_btn">↑</div>
             
-        <footer>COPYRIGHT © 2022 台北一日遊</footer>
-    </div>
+            {% block content %}{% endblock content %}
+                
+            <footer>COPYRIGHT © 2022 台北一日遊</footer>
+        </div>
 
         {% block js %}{% endblock js %}
     </body>
