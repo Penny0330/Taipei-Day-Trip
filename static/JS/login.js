@@ -2,7 +2,9 @@
 const container = document.querySelector(".container");
 window.addEventListener("load", vanish);
 function vanish(){
-    container.classList.add("disappear");
+    setTimeout(() => {
+        container.classList.add("disappear");
+      }, 1000);
 }
 
 // ----- side_navbar -----

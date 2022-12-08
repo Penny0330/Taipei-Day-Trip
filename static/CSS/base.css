@@ -37,7 +37,7 @@
 
 .text{
     color: var(--white);
-    letter-spacing: 2px;
+    letter-spacing: 5px;
 }
 
 .loading{
