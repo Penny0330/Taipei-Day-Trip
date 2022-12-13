@@ -151,15 +151,13 @@ nav > .top_link > h1 > a:hover{
     color: var(--light_green);
 }
 
-nav > .top_link > .link > .top_link_booking:hover, .top_link_login.side_link_booking:hover{
+nav > .top_link > .link > .top_link_booking:hover, .top_link_login:hover, .side_link_booking:hover{
     color: var(--light_green);
 }
 
 nav > .top_link > .link > .top_link_logout:hover{
     color: var(--light_green);
 }
-
-
 
 /* nav sidebar */
 .side_navbar{
@@ -185,7 +183,7 @@ nav > .top_link > .link > .top_link_logout:hover{
 
 .side_link_open{
     position: absolute;
-    top: 41.5px;
+    top: 38px;
     right: -10px;
 
     width: 100vw;
@@ -267,6 +265,7 @@ nav > .top_link > .link > .top_link_logout:hover{
 footer{
     background: var(--light_gray);
     height: 104px;
+
 
     display: grid;
     align-items: center;
@@ -403,7 +402,7 @@ footer{
     color: var(--white);
 
     padding: 10px 20px;
-    margin: 10px 0;
+    margin: 10px 0 5px;
 }
 
 .signIn > .signIn_change_message{
@@ -425,9 +424,8 @@ footer{
 
 .signIn > .signIn_response_message{
     width: 100%;
-    color: var(--white);
-    background-color: var(--response_message);
-    margin: 10px 0;
+    color: var(--response_message);
+    margin: 5px 0;
 }
 
 /*----- SignUp -----*/
@@ -516,7 +514,7 @@ footer{
     color: var(--white);
 
     padding: 10px 20px;
-    margin: 10px 0;
+    margin: 10px 0 5px;
 }
 
 .signUp > .signUp_change_message{
@@ -538,9 +536,8 @@ footer{
 
 .signUp_response_message{
     width: 100%;
-    color: var(--white);
-    background-color: var(--response_message);
-    margin: 10px 0px;
+    color: var(--response_message);
+    margin: 5px 0;
 }
 
 /* button change */

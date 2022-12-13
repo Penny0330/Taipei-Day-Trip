@@ -5,7 +5,7 @@ let keyword_value;
 const main = document.querySelector("main");
 
 // start loading
-checkPage(0);
+initPage(0);
 fetchCategory();
 
 // scroll event
@@ -41,7 +41,7 @@ function continuePage(entries){
 };
 
 
-function checkPage(page){
+function initPage(page){
     const url = `/api/attractions?page=${page}`;
     fetchData(url);
 };
@@ -88,24 +88,43 @@ async function fetchKeyword(url){
 };
 
 // 建立 Attraction 區塊，並將取得的 response 資料放入
+let loader = document.querySelector(".loader");
+let loader_text = document.querySelector(".loader_text");
+
 function getAttraction(result){
     const get_data = result.data;
+    let finishImg = 0;
 
     for(let i = 0; i < get_data.length; i++){
 
         const attraction = document.createElement("a");
         attraction.setAttribute("class", "attraction");
         attraction.href = `attraction/${get_data[i].id}`;
-        main.append(attraction);
-
+        
         const attraction_name = document.createElement("div");
         attraction_name.setAttribute("class", "attraction_name");
-        attraction.append(attraction_name);
 
         const img = document.createElement("img");
         img.src = get_data[i].images[0];
-        attraction_name.append(img);
 
+        attraction_name.append(img);
+        
+        // image preload
+        img.addEventListener("load", ()=>{
+            finishImg += 1;
+            
+            if(finishImg == get_data.length){
+                main.style.display = "grid";
+                loader.style.display = "none"
+                loader_text.textContent = "0%"; 
+            }else{
+                loader.style.display = "flex";
+                loader_text.textContent = `${Math.round((finishImg / get_data.length) * 100)}%`;
+            }
+            attraction.insertBefore(attraction_name, attraction_info);
+            attraction_name.insertBefore(img, p);
+        });
+        
         const p = document.createElement("p")
         p.innerHTML = get_data[i].name;
         attraction_name.append(p);
@@ -127,6 +146,8 @@ function getAttraction(result){
         category.setAttribute("class", "category");
         category.innerHTML = get_data[i].category;
         attraction_info.append(category);
+
+        main.append(attraction);
     }
 };
 

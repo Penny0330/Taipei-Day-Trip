@@ -1,12 +1,3 @@
-// -----loading -----
-const container = document.querySelector(".container");
-window.addEventListener("load", vanish);
-function vanish(){
-    setTimeout(() => {
-        container.classList.add("disappear");
-      }, 1000);
-}
-
 // ----- side_navbar -----
 const side_navbar = document.querySelector(".side_navbar");
 const side_link = document.querySelector(".side_link");
@@ -23,7 +14,10 @@ side_logo.addEventListener("click", ()=>{
 // ----- check status -----
 const top_link_logout = document.querySelector(".top_link_logout");
 const top_link_login = document.querySelector(".top_link_login");
-let top_name = document.querySelector(".top_name")
+let top_name = document.querySelector(".top_name");
+
+let isLogin = false;
+
 window.onload = function(){
     fetch("/api/user/auth",{
         method: "GET",
@@ -32,18 +26,26 @@ window.onload = function(){
         return res.json();
     }).then((res)=>{
         if(res.data){
-            top_link_login.style.display = "none";
-            top_link_logout.style.display = "block";
-            top_name.innerHTML = `${res.data.name}，您好`;
-            
-            side_link_login.style.display = "none";
-            side_link_logout.innerHTML = "登出系統";
-            side_name.innerHTML = `${res.data.name}，您好`;
+            topLinkChange(res);
+
+            isLogin = true;
         }else{
+            isLogin = false;
             return
         }
     })
 };
+
+function topLinkChange(res){
+    top_link_login.style.display = "none";
+    top_link_logout.style.display = "block";
+    top_name.innerHTML = `${res.data.name}，您好`;
+    
+    side_link_login.style.display = "none";
+    side_link_logout.innerHTML = "登出系統";
+    side_name.innerHTML = `${res.data.name}，您好`;
+}
+
 
 
 // ----- open signIn box -----
@@ -165,12 +167,12 @@ signUp_name.addEventListener("input", ()=>{
 
     if(signUp_name.value == ""){
         signUp_name_message.innerHTML = "請輸入姓名";
-        signUp_name.style.border = "1px solid red";    
+        signUp_name.style.border = "1px solid rgba(204, 92, 92, 0.9)";    
         checkName_signUp = false;
     }else{
         if(signUp_name.value.length < 1 || signUp_name.value.length > 8){
             signUp_name_message.innerHTML = "須介於1-8個字元";
-            signUp_name.style.border = "1px solid red";
+            signUp_name.style.border = "1px solid rgba(204, 92, 92, 0.9)";
             checkName_signUp = false;
         }
         else{
@@ -195,13 +197,13 @@ signUp_email.addEventListener("input", ()=>{
 
     if(signUp_email.value == ""){
         signUp_email_message.innerHTML = "請輸入電子信箱";
-        signUp_email.style.border = "1px solid red";
+        signUp_email.style.border = "1px solid rgba(204, 92, 92, 0.9)";
         checkEmail_signUp = false;
     }else{
         let reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
         if(!reg.test(signUp_email.value)){
             signUp_email_message.innerHTML = "電子信箱格式錯誤";
-            signUp_email.style.border = "1px solid red";
+            signUp_email.style.border = "1px solid rgba(204, 92, 92, 0.9)";
             checkEmail_signUp = false;
         }else{
             signUp_email_message.innerHTML = "";
@@ -224,12 +226,12 @@ signUp_password.addEventListener("input", ()=>{
 
     if(signUp_password.value == ""){
         signUp_password_message.innerHTML = "請輸入密碼";
-        signUp_password.style.border = "1px solid red";
+        signUp_password.style.border = "1px solid rgba(204, 92, 92, 0.9)";
         checkPassword_signUp = false;
     }else{
         if(signUp_password.value.length < 6 || signUp_password.value.length > 10){
             signUp_password_message.innerHTML = "須介於6-10個字元";
-            signUp_password.style.border = "1px solid red";
+            signUp_password.style.border = "1px solid rgba(204, 92, 92, 0.9)";
             checkPassword_signUp = false;
         }else{
             signUp_password_message.innerHTML = "";
@@ -260,7 +262,6 @@ signUp_button.addEventListener("click", ()=>{
         return res.json();
     })
     .then((res)=>{
-        
         signUp_response_message.innerHTML = res.message;
     })
     .catch((error)=>{
@@ -294,13 +295,13 @@ signIn_email.addEventListener("input", ()=>{
 
     if(signIn_email.value == ""){
         signIn_email_message.innerHTML = "請輸入電子信箱";
-        signIn_email.style.border = "1px solid red";
+        signIn_email.style.border = "1px solid rgba(204, 92, 92, 0.9)";
         checkEmail_signIn = false;
     }else{
         let reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
         if(!reg.test(signIn_email.value)){
             signIn_email_message.innerHTML = "電子信箱格式錯誤";
-            signIn_email.style.border = "1px solid red";
+            signIn_email.style.border = "1px solid rgba(204, 92, 92, 0.9)";
             checkEmail_signIn = false;
         }else{
             signIn_email_message.innerHTML = "";
@@ -323,12 +324,12 @@ signIn_password.addEventListener("input", ()=>{
 
     if(signIn_password.value == ""){
         signIn_password_message.innerHTML = "請輸入密碼";
-        signIn_password.style.border = "1px solid red";
+        signIn_password.style.border = "1px solid rgba(204, 92, 92, 0.9)";
         checkPassword_signIn = false;
     }else{
         if(signIn_password.value.length < 6 || signIn_password.value.length > 10){
             signIn_password_message.innerHTML = "須介於6-10個字元";
-            signIn_password.style.border = "1px solid red";
+            signIn_password.style.border = "1px solid rgba(204, 92, 92, 0.9)";
             checkPassword_signIn = false;
         }else{
             signIn_password_message.innerHTML = "";
@@ -344,6 +345,7 @@ signIn_password.addEventListener("input", ()=>{
     
     return checkPassword_signIn;
 });
+
 
 signIn_button.addEventListener("click", ()=>{
     fetch("/api/user/auth",{
@@ -364,7 +366,6 @@ signIn_button.addEventListener("click", ()=>{
     })
 });
 
-
 // ----- signOut button -----
 top_link_logout.addEventListener("click", ()=>{
     fetch("/api/user/auth",{
@@ -374,10 +375,11 @@ top_link_logout.addEventListener("click", ()=>{
        return res.json()
     }).then((res)=>{
         if(res.ok){
-            window.location.reload();
+            document.location.href="/";
         }
     })
 });
+
 
 side_link_logout.addEventListener("click", ()=>{
     fetch("/api/user/auth",{
@@ -387,7 +389,31 @@ side_link_logout.addEventListener("click", ()=>{
        return res.json()
     }).then((res)=>{
         if(res.ok){
-            window.location.reload();
+            document.location.href="/";
         }
     })
+});
+
+
+// ----- nav link booking -----
+const top_link_booking = document.querySelector(".top_link_booking");
+
+top_link_booking.addEventListener("click", ()=>{
+    if(isLogin){
+        document.location.href="/booking";
+    }else{
+        signIn.style.display = "block";
+        signIn.classList.add("appear");
+        overlay.style.display = "block";
+    }
+});
+
+side_link_booking.addEventListener("click", ()=>{
+    if(isLogin){
+        document.location.href="/booking";
+    }else{
+        signIn.style.display = "block";
+        signIn.classList.add("appear");
+        overlay.style.display = "block";
+    }
 });

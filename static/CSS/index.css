@@ -74,7 +74,6 @@ header > .slogan_search > .search > input{
 
 header > .slogan_search > .search > input:focus{
   outline: none;
-  border: 5px solid var(--light_green);
 }
 
 header > .slogan_search > .search > button{
@@ -147,6 +146,7 @@ header > .slogan_search > .category_list > .category:hover{
 
 main{
   width: 1200px;
+  min-height: calc(188px - 104px);
   
   margin: 50px auto;
   padding: 15px;
@@ -155,6 +155,8 @@ main{
   grid-template-columns: repeat(4, 270px);
   gap: 30px;
   justify-content: center;
+
+  display: none;
 }
 
 main > .attraction{
@@ -219,18 +221,6 @@ main > .attraction > .attraction_info > .mrt{
   padding: 10px;
 }
 
-footer{
-  background: var(--light_gray);
-  height: 104px;
-
-  display: grid;
-  align-items: center;
-  justify-content: center;
-
-  color: var(--white);
-  font-weight: bold;
-}
-
 @media (max-width: 1200px) {
   main{
     width: 900px;
@@ -266,6 +256,7 @@ footer{
 
   main{
     width: 360px;
+    min-height: calc(228px - 104px);
     grid-template-columns: repeat(1, 322px);
 
     gap: 15px;
@@ -273,7 +264,6 @@ footer{
   }
 
   main > .attraction{
-    display: grid;
     grid-template-rows: 235px 45px;
   }
 
@@ -281,3 +271,88 @@ footer{
     height: 100%;
   }
 }
+
+.loader{
+  width: 90px;
+  height: 90px;
+  transform:  translate(-50%, -50%);
+  border: 10px solid #dddddd;
+  border-radius: 50%;
+  
+  text-align: center;
+  line-height: 90px;
+  font-family: sans-serif;
+  color: var(--green);
+
+  position: relative;
+  top: 50%;
+  left: 50%;
+
+  margin-bottom: 95px;
+}
+
+.loader::before{
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 100%;
+  height: 100%;
+  border: 10px solid #dddddd;
+  border-radius: 50%;
+  border-top: 10px solid #93dbe9;
+  border-right: 10px solid #93dbe9;
+
+  animation: animateCircle 2s linear infinite;
+}
+
+.loader_text{
+  position: absolute;
+  left: 25%;
+  top: -16%;
+  width: 45%;
+
+  color: var(--deep_gray);
+}
+
+.loaderCircle{
+  display: block;
+  position: absolute;
+  top: calc(50% - 2px);
+  left: 50%;
+  width: 50%;
+  height: 10px;
+  transform-origin: left;
+  animation: animate 2s linear infinite;
+}
+
+.loaderCircle::before{
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #93dbe9;
+  top: -5px;
+  right: -16px;
+  box-shadow: 0 0 10px #93dbe9;
+}
+
+@keyframes animateCircle{
+  0%{
+      transform: rotate(0deg);
+  }
+  100%{
+      transform: rotate(360deg);
+  }
+}
+
+@keyframes animate{
+  0%{
+      transform: rotate(45deg);
+  }
+  100%{
+      transform: rotate(405deg);
+  }
+}
+
