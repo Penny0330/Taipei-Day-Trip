@@ -13,10 +13,10 @@ const no_booking = document.querySelector(".no_booking");
 const footer = document.querySelector("footer");
 const welcome_text = document.querySelector(".welcome_text");
 const name = document.getElementById("name");
+const email = document.getElementById("email");
 const total_price = document.querySelector(".total_price");
-let user_name;
 
-window.onload = function(){
+window.onload = function(){ 
     fetch("/api/user/auth",{
         method: "GET",
         headers:{"Content-Type":"application/json"}
@@ -25,6 +25,7 @@ window.onload = function(){
     }).then((res)=>{
         if(res.data){
             user_name = res.data.name;
+            user_email = res.data.email;
 
             bookingInfo();
             topLinkChange(res);
@@ -57,7 +58,7 @@ function bookingInfo(){
 
 // ----- delete button -----
 const delete_button = document.querySelector(".delete_button");
-const check_delete = document.querySelector(".check_delete");
+const check_delete_box = document.querySelector(".check_delete_box");
 const check_button = document.querySelector(".check_button");
 const checked = document.querySelector(".checked");
 const cancel = document.querySelector(".cancel");
@@ -65,8 +66,8 @@ const title = document.querySelector(".title");
 const check_delete_close_button = document.querySelector(".check_delete_close_button");
 
 delete_button.addEventListener("click", ()=>{
-    check_delete.style.display = "grid";
-    check_delete.classList.add("appear");
+    check_delete_box.style.display = "grid";
+    check_delete_box.classList.add("appear");
 });
 
 // ----- checked delete -----
@@ -85,7 +86,7 @@ checked.addEventListener("click", ()=>{
             check_button.style.display = "none";
             title.textContent = "訂單已刪除";
             setTimeout(()=>{
-                check_delete.style.display = "none";
+                check_delete_box.style.display = "none";
             }, 1500)
             noBooking(res);
         }
@@ -95,12 +96,12 @@ checked.addEventListener("click", ()=>{
 
 // ----- canceled delete -----
 cancel.addEventListener("click", ()=>{
-    check_delete.style.display = "none";
+    check_delete_box.style.display = "none";
 })
 
 // ----- close delete button ------
 check_delete_close_button.addEventListener("click", ()=>{
-    check_delete.style.display = "none";
+    check_delete_box.style.display = "none";
 })
 
 
@@ -119,8 +120,8 @@ function getBooking(res){
     }else{
         time.textContent = "下午 4 點到晚上 10 點";
     }
-
-    name.value = res.data.user_name;
+    email.value = user_email;
+    name.value = user_name;
     total_price.innerHTML = `總價：新台幣 ${res.data.price} 元`;
 };
 

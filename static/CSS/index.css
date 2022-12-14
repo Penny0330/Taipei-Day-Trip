@@ -34,7 +34,7 @@ header{
 header > .slogan_search{
   grid-column: 2/3;
   align-self: center;
-  padding-left: 10px;
+  margin-left: 10px;
 
   display: grid;
 
@@ -95,7 +95,6 @@ header > .slogan_search > .category_list{
   grid-template-columns: repeat(3, 120px);
   width: 400px;
   margin-top: 5px;
-  margin-left: 10px;
 
   background-color: var(--white);
   color: var(--black);
@@ -251,7 +250,6 @@ main > .attraction > .attraction_info > .mrt{
   header > .slogan_search > .category_list{
     width: 322px;
     grid-template-columns: repeat(3, 96px);
-    margin-left: 20px;
   }
 
   main{

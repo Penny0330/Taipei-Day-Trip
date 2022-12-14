@@ -76,7 +76,7 @@ async function fetchKeyword(url){
     const response = await fetch(url);
     const result = await response.json();
 
-    if(result.data == undefined){
+    if(!result.data){
         main.innerHTML ="";
         main.innerHTML = `關鍵字:${keyword_value}，查無相關景點。`;
         return
@@ -115,8 +115,11 @@ function getAttraction(result){
             
             if(finishImg == get_data.length){
                 main.style.display = "grid";
-                loader.style.display = "none"
+                loader.style.display = "none";
                 loader_text.textContent = "0%"; 
+                if(!nextPage){
+                    loader.style.display = "none";
+                }
             }else{
                 loader.style.display = "flex";
                 loader_text.textContent = `${Math.round((finishImg / get_data.length) * 100)}%`;

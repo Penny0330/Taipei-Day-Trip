@@ -66,11 +66,12 @@ function create_DotImg(){
         dotAll.append(dotSpan);
     }
 
+    // image preload;
     let finishImg = 0;
-    console.log(imgData)
+
     imgData.map((value, index, arr)=>{
         attractionImg = document.createElement("img");
-        console.log(attractionImg)
+        
         attractionImg.addEventListener("load", ()=>{
             finishImg += 1;
             if (finishImg === imgCount){
@@ -190,7 +191,7 @@ function open_signIn_box(){
     overlay.style.display = "block";
 }
 
-const booking_message = document.querySelector(".booking_message");
+const booking_message_box = document.querySelector(".booking_message_box");
 const booking_message_title = document.querySelector(".booking_message_title")
 const booking_message_close_button = document.querySelector(".booking_message_close_button");
 const booking_message_button = document.querySelector(".booking_message_button")
@@ -213,19 +214,13 @@ function booking(){
         return res.json();
     })
     .then((res)=>{
-        console.log(res)
+        
         if(res.update){
-            booking_message.style.display = "grid";
-            booking_message.classList.add("appear");
-            booking_message_title.innerHTML = res.message;
+            appearBookingMessage(res);
         }else if(res.ok){
-            booking_message.style.display = "grid";
-            booking_message.classList.add("appear");
-            booking_message_title.innerHTML = res.message;
+            appearBookingMessage(res);
         }else{
-            booking_message.style.display = "grid";
-            booking_message.classList.add("appear");
-            booking_message_title.innerHTML = res.message;
+            appearBookingMessage(res);
         }
     })
     .catch((err)=>{
@@ -233,12 +228,18 @@ function booking(){
     })
 }
 
+function appearBookingMessage(res){
+    booking_message_box.style.display = "grid";
+    booking_message_box.classList.add("appear");
+    booking_message_title.innerHTML = res.message;
+};
+
 booking_message_close_button.addEventListener("click", ()=>{
-    booking_message.style.display = "none";
+    booking_message_box.style.display = "none";
 })
 
 booking_message_button.addEventListener("click", ()=>{
-    booking_message.style.display = "none";
+    booking_message_box.style.display = "none";
     document.location.href="/booking";
 })
 

@@ -20,71 +20,6 @@
     font-family: 'Noto Sans TC';
 }
 
-/* loading page */
-.container{
-    background-color: var(--green);
-    min-width: 100%;
-    min-height: 100vh;
-
-    position: fixed;
-    z-index: 50;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.text{
-    color: var(--white);
-    letter-spacing: 5px;
-}
-
-.loading{
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-top: 20px;
-}
-
-.loading > .line_box{
-    padding: 2px;
-    width: 40%;
-    border:  2px solid var(--white);
-    border-radius: 20px;
-}
-
-.loading > .line_box > .line{
-    height: 20px;
-    background-color: var(--white);
-    border-radius: 20px;
-    animation: loading 2s forwards infinite cubic-bezier(0,0,0,0);
-}
-
-@keyframes loading{
-    0%{
-        width: 0%;
-    }
-    100%{
-        width: 100%;
-    }
-}
-
-.disappear{
-    animation: vanish 0.5s forwards;
-}
-
-@keyframes vanish {
-    100%{
-        opacity: 0;
-        visibility: hidden;
-    }
-}
-
-
 /* ----- nav ----- */
 nav{
     display: grid;
@@ -103,7 +38,7 @@ nav > .top_link{
     grid-column: 2/3;
 
     display: grid;
-    grid-template-columns: 160px auto;
+    grid-template-columns: repeat(2, 1fr);
     align-items: center;
 }
 
@@ -288,15 +223,22 @@ footer{
     display: none;
 }
 
+.auth{
+    width: 100%;
+
+    position: fixed;
+    top: 5rem;
+    z-index: 10;
+
+    display: grid;
+}
+
 /*----- SignIn -----*/
 .signIn{
     width: 340px;
 
-    position: fixed;
+
     justify-self: center;
-    top: 5rem;
-    
-    z-index: 10;
 
     background-color: var(--white);
     box-shadow: var(--login_box_shadow);
@@ -307,6 +249,8 @@ footer{
     display: grid;
     padding: 15px;
     justify-items: center;
+
+    position: relative;
 
     display: none;
 }
@@ -432,11 +376,7 @@ footer{
 .signUp{
     width: 340px;
 
-    position: fixed;
     justify-self: center;
-    top: 5rem;
-    
-    z-index: 10;
 
     background-color: var(--white);
     box-shadow: var(--login_box_shadow);
@@ -447,6 +387,8 @@ footer{
     display: grid;
     padding: 15px;
     justify-items: center;
+
+    position: relative;
 
     display: none;
 }
