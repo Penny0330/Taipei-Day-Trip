@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>訂購行程</title>
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="/CSS/booking.css">
+    <link rel="stylesheet" href="/CSS/base.css">
+{% endblock css %}
+{% block content %}
+    <main>
+        <div class="welcome">
+            <div class="welcome_text"></div>
+        </div>
+        <div class="booking_info">
+            <div class="left">
+                <img class="attraction_img" alt="pic">
+            </div>
+            <div class="right">
+                <div class="attraction_title"></div>
+                <div class="attraction_date">
+                    <b>日期：</b>
+                    <span class="date"></span>
+                </div>
+                <div class="attraction_time">
+                    <b>時間：</b>
+                    <span class="time"></span>
+                </div>
+                <div class="attraction_price">
+                    <b>費用：</b>
+                    <span class="price"></span>
+                </div>
+                <div class="attraction_address">
+                    <b>地點：</b>
+                    <span class="address"></span>
+                </div>
+                <img class="delete_button" src="/images/icon_delete.svg" alt="delete">
+            </div>
+        </div>
+
+        <div class="contact">
+            <h3>您的聯絡資訊</h3>
+            <div class="contact_name">
+                聯絡姓名：
+                <input type="text" name="name" id="name">
+            </div>
+            <div class="contact_email">
+                連絡信箱：
+                <input type="email" name="email" id="email">
+            </div>
+            <div class="contact_name">
+                手機號碼：
+                <input type="tel" id="tel">
+            </div>
+            <h4>請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</h4>
+        </div>
+
+        <div class="payment">
+            <h3>信用卡付款資訊</h3>
+            <div class="creditCard_number">
+                卡片號碼：
+                <input type="text" placeholder="**** **** ****">
+            </div>
+            <div class="exp">
+                過期時間：
+                <input type="text" placeholder="MM/YY" name="exp" id="exp">
+            </div>
+            <div class="password">
+                驗證密碼：
+                <input type="text" placeholder="CVV" name="payment_password" id="payment_password">
+            </div>
+        </div>
+
+        <div class="checkPay">
+            <h4 class="total_price"></h4>
+            <button class="checkPay_button">確認訂購並付款</button>
+        </div>
+
+    </main>
+
+    <div class="check_delete">
+        <div class="check_delete_box">
+            <img class="check_delete_close_button" src="/images/icon_close.png" alt="close_button">
+            <div class="title">確定刪除?</div>
+            <div class="check_button">
+                <button class="cancel">取消</button>
+                <button class="checked">刪除</button>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}
+
+{% block js %}
+    <script src="/JS/auth.js"></script>
+    <script src="/JS/booking.js"></script>
+{% endblock js %}

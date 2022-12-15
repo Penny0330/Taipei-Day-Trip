@@ -6,7 +6,7 @@
 
 {% block css %}
     <link rel="stylesheet" href="/CSS/index.css">
-    <link rel="stylesheet" href="/CSS/login.css">
+    <link rel="stylesheet" href="/CSS/base.css">
 {% endblock css %}
 {% block content %}
     <header>
@@ -21,11 +21,16 @@
             </div>
         </div>
     </header>
-
-    <main></main>
+    <div class="loader">
+        <div class="loader_text">0%</div>
+        <span class="loaderCircle"></span>
+    </div>
+    <main>
+        
+    </main>
 {% endblock content %}
 
 {% block js %}
+    <script src="/JS/auth.js"></script>
     <script src="/JS/index.js"></script>
-    <script src="/JS/login.js"></script>
 {% endblock js %}

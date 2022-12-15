@@ -3,6 +3,7 @@ from flask import *
 # 匯入 blueprint
 from api.attraction import attraction
 from api.auth import auth
+from api.booking import booking
 
 app = Flask(__name__,
             static_folder="static",
@@ -17,6 +18,7 @@ app.config["JSON_SORT_KEYS"] = False  # 排序 JSON
 # 使用 register_blueprint 方法將 blueprint 註冊到 app
 app.register_blueprint(attraction)
 app.register_blueprint(auth)
+app.register_blueprint(booking)
 
 # Pages
 

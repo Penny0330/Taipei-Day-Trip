@@ -6,13 +6,26 @@
 
 {% block css %}
     <link rel="stylesheet" href="/CSS/attraction.css">
-    <link rel="stylesheet" href="/CSS/login.css">
+    <link rel="stylesheet" href="/CSS/base.css">
 {% endblock css %}
 {% block content %}
+    <div class="booking_message">
+        <div class="booking_message_box">
+            <img class="booking_message_close_button" src="/images/icon_close.png" alt="close_button">
+            <div class="booking_message_title"></div>
+            <button class="booking_message_button" href="/booking">前往查看訂單</button>
+        </div>
+    </div>
+
     <main>
         <section class="top">
-            
             <div class="left">
+                
+                <div class="loader">
+                    <div class="loader_text">0%</div>
+                    <span class="loaderCircle"></span>
+                </div>
+                
                 <div class="imgAll"></div>
                 <div class="arrowAll">
                     <a class="prev" onclick="arrowButton(-1)">
@@ -35,21 +48,21 @@
                     <p>以此景點為中心的一日行程，帶您探索城市角落故事</p>
                     <div class="date">
                         <h4>選擇日期：</h4>
-                        <input type="date" name="" value="">
+                        <input type="date" id="date_input" name="" value="">
                     </div>
-                    <div class="time">
+                    <div class="time" id="time">
                         <h4>選擇時間： </h4>
 
-                        <input type="radio" class="rdobutton_label" id="morning" name="time" value="morning" checked>
+                        <input type="radio" class="rdobutton_label" id="morning" name="time" value="morning">
                         <label for="morning">上半天</label> 
                         
                         <input type="radio" id="afternoon" class="rdobutton_label" name="time" value="afternoon">
-                        <label for="afternoon">上半天</label>
+                        <label for="afternoon">下半天</label>
                     </div>
 
                     <div class="price">
                         <h4>導覽費用：</h4>
-                        <p id="price">新台幣 2000 元</p>
+                        <p id="price">請選擇導覽時間</p>
                     </div>
 
                     <button class="bookingBtn">開始預約行程</button>
@@ -81,6 +94,6 @@
 {% endblock content %}
 
 {% block js %}
+    <script src="/JS/auth.js"></script>
     <script src="/JS/attraction.js"></script>
-    <script src="/JS/login.js"></script>
 {% endblock js %}

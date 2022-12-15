@@ -8,6 +8,7 @@ let images;
 let dots;
 let dotSpan;
 let imageIndex;
+let choosePrice;
 
 getAttraction_Id(url_Id);
 
@@ -48,6 +49,7 @@ function getAttraction_Id(url_Id){
         imgCount = data.images.length;
         imgData = data.images;
         create_DotImg();
+
     })
     .catch((error)=>{
         document.querySelector(".top").innerHTML = "There appears to be some error!";
@@ -55,17 +57,37 @@ function getAttraction_Id(url_Id){
 };
 
 // ----- create dot、img ----- 
+const loader = document.querySelector(".loader");
+const loader_text = document.querySelector(".loader_text"); 
 function create_DotImg(){
     for(let i = 0; i < imgCount; i++){
         dotSpan = document.createElement("span");
         dotSpan.setAttribute("class", "dot");
-        dotAll.append(dotSpan)
-        
-        attractionImg = document.createElement("img");
-        attractionImg.setAttribute("class", "attractionImg");
-        attractionImg.src = imgData[i];
-        imgAll.append(attractionImg);
+        dotAll.append(dotSpan);
     }
+
+    // image preload;
+    let finishImg = 0;
+
+    imgData.map((value, index, arr)=>{
+        attractionImg = document.createElement("img");
+        
+        attractionImg.addEventListener("load", ()=>{
+            finishImg += 1;
+            if (finishImg === imgCount){
+                imgAll.style.display = "block";
+                dotAll.style.display = "flex";
+                loader.style.display = "none"; 
+            }else{
+                loader.style.display = "flex";
+                loader_text.textContent = `${Math.round((finishImg / arr.length) * 100)}%`;
+            }
+        })
+        attractionImg.setAttribute("class", "attractionImg");
+        attractionImg.src = value;
+        imgAll.append(attractionImg);
+    })
+    
     
     // all dots、images
     dots = document.querySelectorAll("span");
@@ -78,9 +100,11 @@ function create_DotImg(){
     // ----- click the dot switch images -----
     for(let i = 0; i < dots.length; i++){
         dots[i].addEventListener("click", ()=>{
-            showImages(imageIndex = i + 1);
+            // showImages(imageIndex = i + 1);
+            showImages(imageIndex = i);
         })
     }
+
 };
 
 // ----- img-Arrows -----
@@ -110,22 +134,114 @@ function showImages(index) {
     }
     // according to the current index, show  the image and dot
     images[imageIndex-1].style.display = "block";
-    dots[imageIndex-1].classList.add("active");
+    dots[imageIndex].classList.add("active");
 };
 
 
 // ----- price -----
 const morning = document.getElementById("morning");
 const afternoon = document.getElementById("afternoon");
-const price = document.getElementById("price");
+let price = document.getElementById("price");
 
 morning.addEventListener("click", ()=>{
     price.innerHTML = "新台幣 2000 元";
+    choosePrice = 2000;
 });
 
 afternoon.addEventListener("click", ()=>{
     price.innerHTML = "新台幣 2500 元";
+    choosePrice = 2500;
 });
+
+// ----- booking -----
+const bookingBtn = document.querySelector(".bookingBtn");
+const date = document.querySelector(".date");
+const date_input = document.querySelector("#date_input");
+const time = document.querySelector(".time");
+let chooseTime;
+
+bookingBtn.addEventListener("click", ()=>{
+    if(!isLogin){
+        open_signIn_box();
+    }else if(date_input.value == ""){  // no choose date
+        date.classList.add("warn");
+        setTimeout(()=>{
+            date.classList.remove("warn");
+        }, 500);
+    }else if(!morning.checked && !afternoon.checked){  // no choose time
+        time.classList.add("warn");
+        setTimeout(()=>{
+            time.classList.remove("warn");
+        }, 500);
+    }else{
+        booking()
+    }
+})
+
+// ----- open signIn box ----- 
+function open_signIn_box(){
+    
+
+    signIn.style.display = "block";
+    signIn.classList.add("appear");
+    overlay.style.display = "block";
+
+    signIn.style.display = "block";
+    signIn.classList.add("appear");
+    overlay.style.display = "block";
+}
+
+const booking_message_box = document.querySelector(".booking_message_box");
+const booking_message_title = document.querySelector(".booking_message_title")
+const booking_message_close_button = document.querySelector(".booking_message_close_button");
+const booking_message_button = document.querySelector(".booking_message_button")
+
+function booking(){
+
+    chooseTime = document.querySelector('input[name="time"]:checked').value;
+    
+    fetch("/api/booking", {
+        method: "POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+            "attractionId": url_Id,
+            "date": date_input.value,
+            "time": chooseTime,
+            "price": choosePrice,
+        })
+    })
+    .then((res)=>{
+        return res.json();
+    })
+    .then((res)=>{
+        
+        if(res.update){
+            appearBookingMessage(res);
+        }else if(res.ok){
+            appearBookingMessage(res);
+        }else{
+            appearBookingMessage(res);
+        }
+    })
+    .catch((err)=>{
+        console.log(err.message);
+    })
+}
+
+function appearBookingMessage(res){
+    booking_message_box.style.display = "grid";
+    booking_message_box.classList.add("appear");
+    booking_message_title.innerHTML = res.message;
+};
+
+booking_message_close_button.addEventListener("click", ()=>{
+    booking_message_box.style.display = "none";
+})
+
+booking_message_button.addEventListener("click", ()=>{
+    booking_message_box.style.display = "none";
+    document.location.href="/booking";
+})
 
 // ----- top button -----
 const top_btn = document.getElementById("top_btn");

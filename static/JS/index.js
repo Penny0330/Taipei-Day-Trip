@@ -5,7 +5,7 @@ let keyword_value;
 const main = document.querySelector("main");
 
 // start loading
-checkPage(0);
+initPage(0);
 fetchCategory();
 
 // scroll event
@@ -25,10 +25,10 @@ function continuePage(entries){
         if(entry.isIntersecting){
             if(nextPage != null && fetching == false){
                 if(!keyword_value){
-                    let url = `/api/attractions?page=${nextPage}`;
+                    const url = `/api/attractions?page=${nextPage}`;
                     fetchData(url);
                 }else{
-                    let url = `/api/attractions?page=${nextPage}&keyword=${keyword_value}`;                  
+                    const url = `/api/attractions?page=${nextPage}&keyword=${keyword_value}`;                  
                     fetchKeyword(url);
                 }
             }
@@ -41,8 +41,8 @@ function continuePage(entries){
 };
 
 
-function checkPage(page){
-    let url = `/api/attractions?page=${page}`;
+function initPage(page){
+    const url = `/api/attractions?page=${page}`;
     fetchData(url);
 };
 
@@ -64,7 +64,7 @@ const button = document.querySelector(".search_btn");
 
 button.addEventListener("click", ()=>{
     keyword_value = keyword.value;
-    let url = `/api/attractions?page=0&keyword=${keyword_value}`;
+    const url = `/api/attractions?page=0&keyword=${keyword_value}`;
     keyword.value = "";
     main.innerHTML = "";
     fetchKeyword(url);
@@ -76,7 +76,7 @@ async function fetchKeyword(url){
     const response = await fetch(url);
     const result = await response.json();
 
-    if(result.data == undefined){
+    if(!result.data){
         main.innerHTML ="";
         main.innerHTML = `關鍵字:${keyword_value}，查無相關景點。`;
         return
@@ -88,24 +88,46 @@ async function fetchKeyword(url){
 };
 
 // 建立 Attraction 區塊，並將取得的 response 資料放入
+let loader = document.querySelector(".loader");
+let loader_text = document.querySelector(".loader_text");
+
 function getAttraction(result){
     const get_data = result.data;
+    let finishImg = 0;
 
     for(let i = 0; i < get_data.length; i++){
 
         const attraction = document.createElement("a");
         attraction.setAttribute("class", "attraction");
         attraction.href = `attraction/${get_data[i].id}`;
-        main.append(attraction);
-
+        
         const attraction_name = document.createElement("div");
         attraction_name.setAttribute("class", "attraction_name");
-        attraction.append(attraction_name);
 
         const img = document.createElement("img");
         img.src = get_data[i].images[0];
-        attraction_name.append(img);
 
+        attraction_name.append(img);
+        
+        // image preload
+        img.addEventListener("load", ()=>{
+            finishImg += 1;
+            
+            if(finishImg == get_data.length){
+                main.style.display = "grid";
+                loader.style.display = "none";
+                loader_text.textContent = "0%"; 
+                if(!nextPage){
+                    loader.style.display = "none";
+                }
+            }else{
+                loader.style.display = "flex";
+                loader_text.textContent = `${Math.round((finishImg / get_data.length) * 100)}%`;
+            }
+            attraction.insertBefore(attraction_name, attraction_info);
+            attraction_name.insertBefore(img, p);
+        });
+        
         const p = document.createElement("p")
         p.innerHTML = get_data[i].name;
         attraction_name.append(p);
@@ -127,6 +149,8 @@ function getAttraction(result){
         category.setAttribute("class", "category");
         category.innerHTML = get_data[i].category;
         attraction_info.append(category);
+
+        main.append(attraction);
     }
 };
 

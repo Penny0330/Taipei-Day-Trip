@@ -1,85 +1,23 @@
 :root {
+  --white: #fff;
+  --black: #000;
+  --black_translucent:rgba(15, 14, 14, 0.6);
+
+  --light_gray: #757575;
   --green: #448899;
   --light_green: rgba(68, 136, 153, 0.5);
-  --deep_gray: #666666;
-  --light_gray: #757575;
-  --white: #fff;
-  --black_translucent:rgba(15, 14, 14, 0.6);
-  --black: #000;
-  --category_bgc: #E8E8E8;
-  --categoryList_shadow:  0px 0px 20px #AABBCC;
-  --attractionInfo_border: 1px solid #E8E8E8;
-  --shadow: 0 3px 5px rgba(104, 104, 104, 0.8);
-}
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Noto Sans TC';
+  --categoryList_shadow:  0px 0px 20px #AABBCC;
+  --category_bgc: #E8E8E8;
+
+  --attractionInfo_shadow: 0 3px 5px rgba(104, 104, 104, 0.8);
+  --attractionInfo_border: 1px solid #E8E8E8;
 }
 
 #root{
   display: grid;
   grid-template-rows: 54px 320px auto;
   position: relative;
-}
-
-nav{
-  display: grid;
-  grid-template-columns: auto minmax(300px, 1200px) auto;
-
-
-  position: sticky;
-  top: 0;
-  z-index: 5;
-
-  background-color: var(--white);
-  box-shadow: var(--shadow);
-}
-
-nav > .top_link{
-  grid-column: 2/3;
-
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-}
-
-nav > .top_link > h1{
-  font-size: 30px;
-
-  margin-left: 10px;
-}
-
-nav > .top_link > h1 > a{
-  text-decoration: none;
-  color: var(--green);
-}
-
-nav > .top_link > .link{
-  justify-self: end;
-  display: flex;
-  padding: 10px;
-}
-
-nav > .top_link > .link > .top_link_booking, .top_link_login, .top_link_logout{
-  color: var(--deep_gray);
-  cursor: pointer;
-
-  margin: 0 6px;
-}
-
-nav > .top_link > h1 > a:hover{
-  color: var(--light_green);
-}
-
-nav > .top_link > .link > .top_link_booking:hover, .top_link_login:hover, .top_link_logout:hover{
-  color: var(--light_green);
-}
-
-nav > .top_link > .link > .top_link_logout{
-  display: none;
 }
 
 header{
@@ -96,7 +34,7 @@ header{
 header > .slogan_search{
   grid-column: 2/3;
   align-self: center;
-  padding-left: 10px;
+  margin-left: 10px;
 
   display: grid;
 
@@ -136,7 +74,6 @@ header > .slogan_search > .search > input{
 
 header > .slogan_search > .search > input:focus{
   outline: none;
-  border: 5px solid var(--light_green);
 }
 
 header > .slogan_search > .search > button{
@@ -158,7 +95,6 @@ header > .slogan_search > .category_list{
   grid-template-columns: repeat(3, 120px);
   width: 400px;
   margin-top: 5px;
-  margin-left: 10px;
 
   background-color: var(--white);
   color: var(--black);
@@ -207,32 +143,9 @@ header > .slogan_search > .category_list > .category:hover{
   background-color: var(--category_bgc);
 }
 
-#top_btn{
-  display: none;
-
-  position: fixed;
-  right: 15px;
-  bottom: 50px;
-  z-index: 10;
-
-  background-color: var(--white);
-  color: var(--light_green);
-  border: 4px solid var(--light_green);
-
-  cursor: pointer;
-  font-size: 25px;
-
-  padding: 5px 12px;
-  border-radius: 50%;
-}
-
-#top_btn:hover{
-  color: var(--green);
-  border: 4px solid var(--green);
-}
-
 main{
   width: 1200px;
+  min-height: calc(188px - 104px);
   
   margin: 50px auto;
   padding: 15px;
@@ -241,6 +154,8 @@ main{
   grid-template-columns: repeat(4, 270px);
   gap: 30px;
   justify-content: center;
+
+  display: none;
 }
 
 main > .attraction{
@@ -253,7 +168,7 @@ main > .attraction{
 }
 
 main > .attraction:hover{
-  box-shadow: var(--shadow);
+  box-shadow: var(--attractionInfo_shadow);
 }
 
 main > .attraction > .attraction_name{
@@ -305,18 +220,6 @@ main > .attraction > .attraction_info > .mrt{
   padding: 10px;
 }
 
-footer{
-  background: var(--light_gray);
-  height: 104px;
-
-  display: grid;
-  align-items: center;
-  justify-content: center;
-
-  color: var(--white);
-  font-weight: bold;
-}
-
 @media (max-width: 1200px) {
   main{
     width: 900px;
@@ -347,11 +250,11 @@ footer{
   header > .slogan_search > .category_list{
     width: 322px;
     grid-template-columns: repeat(3, 96px);
-    margin-left: 20px;
   }
 
   main{
     width: 360px;
+    min-height: calc(228px - 104px);
     grid-template-columns: repeat(1, 322px);
 
     gap: 15px;
@@ -359,7 +262,6 @@ footer{
   }
 
   main > .attraction{
-    display: grid;
     grid-template-rows: 235px 45px;
   }
 
@@ -367,3 +269,88 @@ footer{
     height: 100%;
   }
 }
+
+.loader{
+  width: 90px;
+  height: 90px;
+  transform:  translate(-50%, -50%);
+  border: 10px solid #dddddd;
+  border-radius: 50%;
+  
+  text-align: center;
+  line-height: 90px;
+  font-family: sans-serif;
+  color: var(--green);
+
+  position: relative;
+  top: 50%;
+  left: 50%;
+
+  margin-bottom: 95px;
+}
+
+.loader::before{
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 100%;
+  height: 100%;
+  border: 10px solid #dddddd;
+  border-radius: 50%;
+  border-top: 10px solid #93dbe9;
+  border-right: 10px solid #93dbe9;
+
+  animation: animateCircle 2s linear infinite;
+}
+
+.loader_text{
+  position: absolute;
+  left: 25%;
+  top: -16%;
+  width: 45%;
+
+  color: var(--deep_gray);
+}
+
+.loaderCircle{
+  display: block;
+  position: absolute;
+  top: calc(50% - 2px);
+  left: 50%;
+  width: 50%;
+  height: 10px;
+  transform-origin: left;
+  animation: animate 2s linear infinite;
+}
+
+.loaderCircle::before{
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #93dbe9;
+  top: -5px;
+  right: -16px;
+  box-shadow: 0 0 10px #93dbe9;
+}
+
+@keyframes animateCircle{
+  0%{
+      transform: rotate(0deg);
+  }
+  100%{
+      transform: rotate(360deg);
+  }
+}
+
+@keyframes animate{
+  0%{
+      transform: rotate(45deg);
+  }
+  100%{
+      transform: rotate(405deg);
+  }
+}
+

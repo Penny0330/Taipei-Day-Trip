@@ -1,106 +1,15 @@
 :root {
-    --green: #448899;
-    --light_green: rgba(68, 136, 153, 0.5);
-    --deep_gray: #666666;
-    --light_gray: #757575;
     --white: #fff;
-    --black: #000;
-    --black_translucent:rgba(15, 14, 14, 0.6);
-    --bookingForm_bgc: #E8E8E8;
-    --shadow: 0 3px 5px rgba(104, 104, 104, 0.8);
-}
+    --deep_gray: #666666;
+    --green: #448899;
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Noto Sans TC';
+    --arrow_shadow: 0 3px 5px rgba(104, 104, 104, 0.8);
+    --bookingForm_bgc: #E8E8E8;
 }
 
 #root{
     display: grid;
     grid-template-rows: 54px auto;
-}
-
-nav{
-    display: grid;
-    grid-template-columns: auto minmax(300px, 1200px) auto;
-
-
-    position: sticky;
-    top: 0;
-    z-index: 5;
-
-    background-color: var(--white);
-    box-shadow: var(--shadow);
-}
-
-nav > .top_link{
-    grid-column: 2/3;
-
-    display: grid;
-    grid-template-columns: 160px auto;
-    align-items: center;
-}
-
-nav > .top_link > h1{
-    font-size: 30px;
-
-    margin-left: 10px;
-}
-
-nav > .top_link > h1 > a{
-    text-decoration: none;
-    color: var(--green);
-}
-
-nav > .top_link > .link{
-    justify-self: end;
-    display: flex;
-    padding: 10px 0px;
-}
-
-nav > .top_link > .link > .top_link_booking, .top_link_login, .top_link_logout{
-    color: var(--deep_gray);
-    cursor: pointer;
-  
-    margin: 0 6px;
-}
-
-nav > .top_link > h1 > a:hover{
-    color: var(--light_green);
-}
-
-nav > .top_link > .link > .top_link_booking:hover, .top_link_login:hover, .top_link_logout:hover{
-    color: var(--light_green);
-}
-
-nav > .top_link > .link > .top_link_logout{
-    display: none;
-}
-
-#top_btn{
-    display: none;
-
-    position: fixed;
-    right: 15px;
-    bottom: 50px;
-    z-index: 10;
-
-    background-color: var(--white);
-    color: var(--light_green);
-    border: 4px solid var(--light_green);
-
-    cursor: pointer;
-    font-size: 25px;
-
-    padding: 5px 12px;
-    border-radius: 50%;
-}
-
-#top_btn:hover{
-    color: var(--green);
-    border: 4px solid var(--green);
 }
 
 main{
@@ -130,6 +39,8 @@ main > .top > .right{
 main > .top > .left > .imgAll{
     width: 100%;
     height: 100%;
+
+    display: none;
 }
 
 main > .top > .left > .imgAll > .attractionImg{
@@ -143,6 +54,8 @@ main > .top > .left > .imgAll > .attractionImg{
 
     animation-name: fade;
     animation-duration: 2s;
+
+    background-color: #E8E8E8;
 }
 
 @keyframes fade {
@@ -173,7 +86,7 @@ main > .top > .left > .arrowAll > .prev > .leftArrow, .next > .rightArrow{
 }
 
 main > .top > .left > .arrowAll > .prev > .leftArrow:hover, .next > .rightArrow:hover{
-    box-shadow: var(--shadow);
+    box-shadow: var(--arrow_shadow);
 }
 
 main > .top > .left > .dotAll{
@@ -182,6 +95,8 @@ main > .top > .left > .dotAll{
 
     display: flex;
     justify-content: center;
+
+    display: none;
 }
 
 main > .top > .left > .dotAll > .dot{
@@ -274,6 +189,8 @@ main > .top > .right > .bookingForm > .bookingBtn{
 
 main > .bottom{
     padding: 0 10px;
+    text-align: justify;
+    letter-spacing: 4px;
 }
 
 main > .bottom > .line{
@@ -285,7 +202,7 @@ main > .bottom > .line{
 main > .bottom > .description, .address, .direction{
     padding: 10px 10px 20px 10px;
     color: var(--deep_gray);
-    line-height: 23.17px;
+    line-height: 25px;
 }
 
 main > .bottom > .map{
@@ -297,16 +214,33 @@ main > .bottom > .map{
     font-weight: bold;
 }
 
-footer{
-    background: var(--light_gray);
-    height: 104px;
+/* warn animation */
+.warn{
+    background-color: rgb(237, 194, 194);
+    border-radius: 5px;
+    animation: warn 1s ease-in;
+}
 
-    display: grid;
-    align-items: center;
-    justify-content: center;
+@keyframes warn{
+    0%{
+        transform: translate(0);
+    }
+    20%,
+    40%,
+    60%,
+    80%{
+        transform: translate(.8em);
+    }
+    10%,
+    30%,
+    50%{
+        transform: translate(-.2em);
+    }
+    70%,
+    100%{
+        transform: translate(0);
+    }
 
-    color: var(--white);
-    font-weight: bold;
 }
 
 @media screen and (max-width: 670px) {
@@ -343,5 +277,172 @@ footer{
 
     main > .bottom{
         padding: 0 15px;
+    }
+
+    .loader{
+        margin-bottom: 120px;
+    }
+}
+
+/* booking message */
+.booking_message{
+    width: 100%;
+
+    position: fixed;
+    top: 5rem;
+    z-index: 10;
+
+    display: grid;
+}
+
+.booking_message_box{
+    background-color: var(--white);
+    box-shadow: 0px 4px 10px #AAAAAA;
+    border-radius: 6px;
+
+    width: 340px;
+
+    justify-self: center;
+
+    display: grid;
+    justify-items: center;
+    padding: 55px 15px 40px;
+    gap: 45px;
+
+    position: relative;
+
+    display: none;
+}
+
+.booking_message_box::before{
+    content: "";
+    width: 100%;
+    height: 10px;
+    background: var(--login_before);
+    border-radius: 6px 6px 0 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.booking_message_title{
+    color: var(--deep_gray);
+    font-size: 19px;
+}
+
+.booking_message_button{
+    border: none;
+    background-color: var(--green);
+    color: var(--white);
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+
+    padding: 8px 16px;
+}
+
+.booking_message_button:hover{
+    background-color: #dddddd;
+    color: var(--green);
+    border: 1px solid var(--green);
+
+    padding: 7px 15px;
+}
+
+.booking_message_close_button{
+    position: absolute;
+    right: 15px;
+    top: 20px;
+
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid var(--light_gray);
+    padding: 2px;
+}
+
+.imgAll{
+    display: none;
+}
+
+.loader{
+    width: 90px;
+    height: 90px;
+    transform:  translate(-50%, -50%);
+    border: 10px solid #dddddd;
+    border-radius: 50%;
+    
+    text-align: center;
+    line-height: 90px;
+    font-family: sans-serif;
+    color: var(--green);
+
+    position: relative;
+    top: 50%;
+    left: 50%;
+}
+
+.loader::before{
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 100%;
+    height: 100%;
+    border: 10px solid #dddddd;
+    border-radius: 50%;
+    border-top: 10px solid #93dbe9;
+    border-right: 10px solid #93dbe9;
+
+    animation: animateCircle 2s linear infinite;
+}
+
+.loader_text{
+    position: absolute;
+    left: 30%;
+    top: -16%;
+    width: 45%;
+
+    color: var(--deep_gray);
+}
+
+.loaderCircle{
+    display: block;
+    position: absolute;
+    top: calc(50% - 2px);
+    left: 50%;
+    width: 50%;
+    height: 10px;
+    transform-origin: left;
+    animation: animate 2s linear infinite;
+}
+
+.loaderCircle::before{
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #93dbe9;
+    top: -5px;
+    right: -16px;
+    box-shadow: 0 0 10px #93dbe9;
+}
+
+@keyframes animateCircle{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes animate{
+    0%{
+        transform: rotate(45deg);
+    }
+    100%{
+        transform: rotate(405deg);
     }
 }
