@@ -100,7 +100,7 @@ function getAttraction(result){
         const attraction = document.createElement("a");
         attraction.setAttribute("class", "attraction");
         attraction.href = `attraction/${get_data[i].id}`;
-        
+
         const attraction_name = document.createElement("div");
         attraction_name.setAttribute("class", "attraction_name");
 

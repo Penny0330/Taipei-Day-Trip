@@ -108,7 +108,7 @@ def signIn_status():
 def signin():
     try:
         connection_object = connection_pool.get_connection()
-        cur = connection_object.cursor()
+        cur = connection_object.cursor(dictionary=True)
 
         email = request.json["email"]
         password = request.json["password"]
@@ -133,11 +133,12 @@ def signin():
                 "SELECT * FROM `member` WHERE `email` = %s", [email])
             user = cur.fetchone()
             if user != None:
-                check_password = bcrypt.check_password_hash(user[3], password)
+                check_password = bcrypt.check_password_hash(
+                    user["password"], password)
                 if check_password:
-                    token = jwt.encode({"id": user[0],
-                                        "name": user[1],
-                                        "email": user[2], },
+                    token = jwt.encode({"id": user["id"],
+                                        "name": user["name"],
+                                        "email": user["email"], },
                                        jwt_key,
                                        algorithm="HS256")
                     response = make_response(
