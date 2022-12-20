@@ -181,6 +181,10 @@ bookingBtn.addEventListener("click", ()=>{
 // ----- date (max、min) -----
 const date_now = new Date();
 
+// 直接轉成 string 帶入
+// date_input.min = date_now.toISOString().split('T')[0];
+
+// 可自行加減 日期、月份
 const year_min = date_now.getFullYear();
 const year_max = (date_now.getMonth() + 1) != 12 ? (date_now.getFullYear()) : (date_now.getFullYear() + 1);
 

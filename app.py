@@ -4,6 +4,7 @@ from flask import *
 from api.attraction import attraction
 from api.auth import auth
 from api.booking import booking
+from api.order import order
 
 app = Flask(__name__,
             static_folder="static",
@@ -19,6 +20,7 @@ app.config["JSON_SORT_KEYS"] = False  # 排序 JSON
 app.register_blueprint(attraction)
 app.register_blueprint(auth)
 app.register_blueprint(booking)
+app.register_blueprint(order)
 
 # Pages
 

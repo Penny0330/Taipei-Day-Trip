@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>訂單資訊</title>
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="/CSS/thankyou.css">
+    <link rel="stylesheet" href="/CSS/base.css">
+{% endblock css %}
+    
+{% block content %}
+    <div class="order">
+        <div class="attraction">
+            <div class="left">
+                <img class="image" src="https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000848.jpg" alt="">
+            </div>
+            <div class="right">
+                <div class="title"></div>
+                <div class="order_date">
+                <b>日期：</b>
+                <span class="date"></span>
+                </div>
+                <div class="order_time">
+                <b>時間：</b>
+                <span class="time"></span>
+                </div>
+                <div class="order_price">
+                    <b>費用：</b>
+                    <span class="price"></span>
+                </div>
+                <div class="order_address">
+                <b>地點：</b>
+                <span class="address"></span>
+                </div>
+            </div>
+            <img class="order_close_button" src="/images/icon_close.png" alt="close_button">
+        </div>
+    </div>
+    
+    <main></main>
+{% endblock content %}
+
+{% block js %}
+    <script src="/JS/auth.js"></script>
+    <script src="/JS/thankyou.js"></script>
+{% endblock js %}
