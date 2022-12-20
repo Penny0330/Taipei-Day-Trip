@@ -72,7 +72,7 @@ def newOrder():
                 data = {
                     "prime": prime,
                     "partner_key": partner_key,
-                    "merchant_id": merchant_id,
+                    "merchant_id": "penny0330_NCCC",
                     "details": "TapPay Test",
                     "amount": price,
                     "cardholder": {
