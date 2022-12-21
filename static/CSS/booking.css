@@ -14,7 +14,7 @@
     display: grid;
     grid-template-rows: 54px auto;
     position: relative;
-  }
+}
 
 main{
     display: grid;

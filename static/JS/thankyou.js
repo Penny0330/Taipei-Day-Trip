@@ -17,8 +17,20 @@ function getOrder(orderNumber){
         return res.json()
     })
     .then((res)=>{
+
         if(res.error){
             location.href = "/";
+            return
+        }else if(res.data === null){
+
+            main.style.textAlign = "center";
+            main.style.height = "100vh";
+            const thankyou = document.createElement("div");
+            thankyou.setAttribute("class", "thankyou");
+            thankyou.style.marginTop = "50px";
+            thankyou.textContent = "查無此訂單編號";
+            main.appendChild(thankyou);
+            
             return
         }
 
@@ -57,14 +69,14 @@ function loadOrder(res){
     continueBookingButton.textContent = "繼續預訂行程";
     top.appendChild(continueBookingButton);
 
+    continueBookingButton.addEventListener("click", ()=>{
+        location.href = "/";
+    });
+
     const checkOrderButton = document.createElement("button");
     checkOrderButton.setAttribute("class", "check_order_button");
     checkOrderButton.textContent = "查看訂單內容";
     top.appendChild(checkOrderButton);
-
-    continueBookingButton.addEventListener("click", ()=>{
-        location.href = "/";
-    });
 
     checkOrderButton.addEventListener("click", ()=>{
         attraction.classList.toggle("appear");
@@ -78,7 +90,18 @@ function loadOrder(res){
         price.textContent = res.price;
         address.textContent = res.trip.address;
         image.src = res.trip.image;
+    });
+
+    const historyOrderButton = document.createElement("button");
+    historyOrderButton.setAttribute("class", "check_order_button");
+    historyOrderButton.textContent = "查看歷史訂單";
+    top.appendChild(historyOrderButton);
+
+    historyOrderButton.addEventListener("click", ()=>{
+        location.href = "/history";
     })
+
+    
 
 };
 

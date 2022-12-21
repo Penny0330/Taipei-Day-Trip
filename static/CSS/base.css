@@ -80,13 +80,18 @@ nav > .top_link > .link > .top_link_logout{
 nav > .top_link > .link > .top_name{
     color: var(--deep_gray);
     margin: 0;
+    cursor: pointer;
+}
+
+nav > .top_link > .link > .top_name:hover{
+    color: var(--light_green);
 }
 
 nav > .top_link > h1 > a:hover{
     color: var(--light_green);
 }
 
-nav > .top_link > .link > .top_link_booking:hover, .top_link_login:hover, .side_link_booking:hover{
+nav > .top_link > .link > .top_link_booking:hover, .top_link_login:hover, .side_link_booking:hover, .side_name:hover{
     color: var(--light_green);
 }
 
@@ -114,6 +119,10 @@ nav > .top_link > .link > .top_link_logout:hover{
 .side_link{
     display: none;
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+.side_name{
+    cursor: pointer;
 }
 
 .side_link_open{

@@ -58,8 +58,8 @@ def newOrder():
                 user_phone = request.json["order"]["contact"]["phone"]
 
                 # 將訂單及付款資訊寫入資料庫
-                insert = "INSERT INTO `order`(`order_number`, `price`, `attraction_id`, `attraction_name`, `attraction_address`, `attraction_image`, `date`, `time`, `name`, `email`, `phone`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-                value = (order_number, price, attraction_id, attraction_name, attraction_address,
+                insert = "INSERT INTO `order`(`member_id`, `order_number`, `price`, `attraction_id`, `attraction_name`, `attraction_address`, `attraction_image`, `date`, `time`, `name`, `email`, `phone`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                value = (user_id, order_number, price, attraction_id, attraction_name, attraction_address,
                          attraction_image, date, time, user_name, user_email, user_phone)
                 cur.execute(insert, value)
                 connection_object.commit()
@@ -127,7 +127,7 @@ def newOrder():
 
 
 @order.route("/api/order/<orderNumber>", methods=["GET"])
-def getOder(orderNumber):
+def getOrder(orderNumber):
     try:
         connection_object = connection_pool.get_connection()
         cur = connection_object.cursor(buffered=True, dictionary=True)
@@ -167,7 +167,7 @@ def getOder(orderNumber):
                     }
                 else:
                     result = {
-                        "data": {None}
+                        "data": None
                     }
 
                 return make_response(result), 200

@@ -25,6 +25,7 @@ window.onload = function(){
     }).then((res)=>{
         return res.json();
     }).then((res)=>{
+
         if(res.data){
             topLinkChange(res);
 
@@ -411,6 +412,28 @@ top_link_booking.addEventListener("click", ()=>{
 side_link_booking.addEventListener("click", ()=>{
     if(isLogin){
         document.location.href="/booking";
+    }else{
+        signIn.style.display = "block";
+        signIn.classList.add("appear");
+        overlay.style.display = "block";
+    }
+});
+
+// ---- nav link history -----
+
+top_name.addEventListener("click", ()=>{
+    if(isLogin){
+        document.location.href="/history";
+    }else{
+        signIn.style.display = "block";
+        signIn.classList.add("appear");
+        overlay.style.display = "block";
+    }
+});
+
+side_name.addEventListener("click", ()=>{
+    if(isLogin){
+        document.location.href="/history";
     }else{
         signIn.style.display = "block";
         signIn.classList.add("appear");
