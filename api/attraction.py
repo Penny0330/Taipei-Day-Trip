@@ -162,16 +162,6 @@ def attractionsId(attractionId):
         connection_object.close()
 
 
-# 建立 Blueprint 物件
-attraction_categories = Blueprint("attraction_categories",
-                                  __name__,
-                                  static_folder="static",
-                                  template_folder="templates"
-                                  )
-
-connection_pool = data.data_connection.connection()
-
-
 # 取得景點分類列表
 @attraction.route("/api/categories")
 def categories():

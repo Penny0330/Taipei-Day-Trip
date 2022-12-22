@@ -137,7 +137,6 @@ function showImages(index) {
     dots[imageIndex].classList.add("active");
 };
 
-
 // ----- price -----
 const morning = document.getElementById("morning");
 const afternoon = document.getElementById("afternoon");
@@ -163,7 +162,7 @@ let chooseTime;
 bookingBtn.addEventListener("click", ()=>{
     if(!isLogin){
         open_signIn_box();
-    }else if(date_input.value == ""){  // no choose date
+    }else if(!date_input.value){  // no choose date
         date.classList.add("warn");
         setTimeout(()=>{
             date.classList.remove("warn");
@@ -174,14 +173,36 @@ bookingBtn.addEventListener("click", ()=>{
             time.classList.remove("warn");
         }, 500);
     }else{
-        booking()
+        booking();
     }
-})
+});
+
+
+// ----- date (max、min) -----
+const date_now = new Date();
+
+// 直接轉成 string 帶入
+// date_input.min = date_now.toISOString().split('T')[0];
+
+// 可自行加減 日期、月份
+const year_min = date_now.getFullYear();
+const year_max = (date_now.getMonth() + 1) != 12 ? (date_now.getFullYear()) : (date_now.getFullYear() + 1);
+
+const month_min = (date_now.getMonth() + 1) < 10 ? "0" + (date_now.getMonth() + 1) : (date_now.getMonth() + 1);
+
+
+let month_max = (month_min + 2) < 12 ? (month_min + 2) : (month_min + 2 - 12);
+month_max = month_max < 10 ? "0" + month_max : month_max;
+
+const date_min =  date_now.getDate() + 1;
+const date_max = date_now.getDate();
+
+date_input.min = `${year_min}-${month_min}-${date_min}`;
+date_input.max = `${year_max}-${month_max}-${date_max}`;
+
 
 // ----- open signIn box ----- 
 function open_signIn_box(){
-    
-
     signIn.style.display = "block";
     signIn.classList.add("appear");
     overlay.style.display = "block";
@@ -192,9 +213,9 @@ function open_signIn_box(){
 }
 
 const booking_message_box = document.querySelector(".booking_message_box");
-const booking_message_title = document.querySelector(".booking_message_title")
+const booking_message_title = document.querySelector(".booking_message_title");
 const booking_message_close_button = document.querySelector(".booking_message_close_button");
-const booking_message_button = document.querySelector(".booking_message_button")
+const booking_message_button = document.querySelector(".booking_message_button");
 
 function booking(){
 

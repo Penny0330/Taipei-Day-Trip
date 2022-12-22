@@ -22,7 +22,7 @@ connection_pool = data.data_connection.connection()
 def checkBooking():
     try:
         connection_object = connection_pool.get_connection()
-        cur = connection_object.cursor(buffered=True)
+        cur = connection_object.cursor(buffered=True, dictionary=True)
         # 是否有登入
         token = request.cookies.get("token")
         if token:
@@ -43,19 +43,19 @@ def checkBooking():
                         "data": None
                     })
 
-                date = datetime.strftime(user_booking[4], "%Y-%m-%d")
+                date = datetime.strftime(user_booking["date"], "%Y-%m-%d")
 
                 result = {
                     "data": {
                         "attraction": {
-                            "id": user_booking[0],
-                            "name": user_booking[1],
-                            "address": user_booking[2],
-                            "images": user_booking[3].split('"')[1]
+                            "id": user_booking["id"],
+                            "name": user_booking["name"],
+                            "address": user_booking["address"],
+                            "images": user_booking["file"].split('"')[1]
                         },
                         "date": date,
-                        "time": user_booking[5],
-                        "price": user_booking[6]
+                        "time": user_booking["time"],
+                        "price": user_booking["price"]
                     }
                 }
 
@@ -142,7 +142,7 @@ def newBooking():
 def deleteBooking():
     try:
         connection_object = connection_pool.get_connection()
-        cur = connection_object.cursor(buffered=True)
+        cur = connection_object.cursor(buffered=True, dictionary=True)
         # 是否有登入
         token = request.cookies.get("token")
         if token:
@@ -158,7 +158,7 @@ def deleteBooking():
                 attraction_number = cur.fetchone()
 
                 cur.execute(
-                    "DELETE FROM `booking` WHERE `attraction_id` = %s", [attraction_number[0]])
+                    "DELETE FROM `booking` WHERE `attraction_id` = %s", [attraction_number["id"]])
                 connection_object.commit()
 
                 return jsonify({

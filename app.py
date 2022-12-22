@@ -4,6 +4,8 @@ from flask import *
 from api.attraction import attraction
 from api.auth import auth
 from api.booking import booking
+from api.order import order
+from api.historyOrder import historyOrder
 
 app = Flask(__name__,
             static_folder="static",
@@ -19,6 +21,8 @@ app.config["JSON_SORT_KEYS"] = False  # 排序 JSON
 app.register_blueprint(attraction)
 app.register_blueprint(auth)
 app.register_blueprint(booking)
+app.register_blueprint(order)
+app.register_blueprint(historyOrder)
 
 # Pages
 
@@ -41,6 +45,11 @@ def booking():
 @app.route("/thankyou")
 def thankyou():
     return render_template("thankyou.html")
+
+
+@app.route("/history")
+def history():
+    return render_template("history.html")
 
 
 app.run(host="0.0.0.0", port=3000, debug=True)

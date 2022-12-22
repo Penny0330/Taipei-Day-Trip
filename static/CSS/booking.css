@@ -7,13 +7,14 @@
 
     --arrow_shadow: 0 3px 5px rgba(104, 104, 104, 0.8);
     --bookingForm_bgc: #E8E8E8;
+    --response_message: rgba(204, 92, 92, 0.9);
 }
 
 #root{
     display: grid;
     grid-template-rows: 54px auto;
     position: relative;
-  }
+}
 
 main{
     display: grid;
@@ -177,6 +178,24 @@ input{
     padding-right: 10%;
 }
 
+.creditCard_number, .exp, .ccv{
+    display: flex;
+    align-items: center;
+}
+
+.tpfield {
+    height: 38px;
+    width: 200px;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+    padding-left: 1.5%;
+}
+  
+.submitButton{
+    width: 150px;
+    padding: 10px 15px;
+}
+
 .total_price{
     color: var(--deep_gray);
     justify-self: end;
@@ -323,6 +342,69 @@ input{
 }
 
 .check_delete_close_button{
+    position: absolute;
+    right: 15px;
+    top: 20px;
+
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid var(--light_gray);
+    padding: 2px;
+}
+
+.contact_email_message, .contact_name_message, .contact_tel_message, .creditCard_number_message{
+    margin-left: 10px;
+    color: var( --response_message);
+}
+
+/* booking message */
+.check_message{
+    width: 100%;
+
+    position: fixed;
+    top: 5rem;
+    z-index: 10;
+
+    display: grid;
+}
+
+.check_message_box{
+    background-color: var(--white);
+    box-shadow: 0px 4px 10px #AAAAAA;
+    border-radius: 6px;
+
+    width: 340px;
+
+    justify-self: center;
+
+    display: grid;
+    justify-items: center;
+    padding: 55px 15px 40px;
+    gap: 45px;
+
+    position: relative;
+
+    display: none;
+}
+
+.check_message_box::before{
+    content: "";
+    width: 100%;
+    height: 10px;
+    background: var(--login_before);
+    border-radius: 6px 6px 0 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.check_message_title{
+    color: var(--deep_gray);
+    font-size: 19px;
+}
+
+.check_message_close_button{
     position: absolute;
     right: 15px;
     top: 20px;
