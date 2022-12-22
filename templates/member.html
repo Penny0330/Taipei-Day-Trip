@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>歷史訂單</title>
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="/CSS/member.css">
+    <link rel="stylesheet" href="/CSS/base.css">
+{% endblock css %}
+    
+{% block content %}
+    <main>
+        <div class="member">
+            <div class="member_title">會員中心</div>
+            <div class="change_name">
+                <div class="title">◎ 更新名字</div>
+                <input type="text" name="name" id="new_name" placeholder="請輸入新的名字 (須介於1-8個字元)">
+                <button class="change_name_button">更新</button>
+                <div class="change_name_message"></div>
+                
+            </div>
+            <div class="change_password">
+                <div class="title">◎ 更新密碼</div>
+                <input type="password" name="password" id="old_password" placeholder="請輸入舊密碼">
+                <input type="password" name="password" id="new_password" placeholder="請輸入新密碼 (須介於6-10個字元)">
+                <input type="password" name="password" id="renew_password" placeholder="再次輸入新密碼">
+                <button class="change_password_button">更新</button>
+                <div class="change_password_message"></div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}
+
+{% block js %}
+    <script src="/JS/auth.js"></script>
+    <script src="/JS/member.js"></script>
+{% endblock js %}

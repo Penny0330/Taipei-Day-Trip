@@ -40,6 +40,8 @@ nav > .top_link{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
+
+    position: relative;
 }
 
 nav > .top_link > h1{
@@ -99,6 +101,45 @@ nav > .top_link > .link > .top_link_logout:hover{
     color: var(--light_green);
 }
 
+.top_link_member_history{
+    position: absolute;
+    top: 49px;
+    right: 65px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    background-color: rgba(0, 0, 0, 0.665);
+    background-color: var(--white);
+    box-shadow: var(--nav_shadow);
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    padding-top: 5px;
+
+    animation:  toTopAppear .2s linear;
+
+    display: none;
+}
+
+@keyframes toTopAppear{
+    0%{
+        top: 40px;
+        opacity: 0%;
+    }
+    100%{
+        top: 49px;
+        opacity: 100%;
+    }
+}
+
+.member_link, .history_link{
+    text-decoration: none;
+    color: var(--white);
+    color: var(--deep_gray);
+}
+
 /* nav sidebar */
 .side_navbar{
     justify-self: end;
@@ -123,6 +164,20 @@ nav > .top_link > .link > .top_link_logout:hover{
 
 .side_name{
     cursor: pointer;
+}
+
+.side_link_history{
+    text-decoration: none;
+    color: var(--white);
+
+    display: none;
+}
+
+.side_link_member{
+    text-decoration: none;
+    color: var(--white);
+    
+    display: none;
 }
 
 .side_link_open{
@@ -172,11 +227,11 @@ nav > .top_link > .link > .top_link_logout:hover{
     color: #91d8ea;
 }
 
-.side_link_booking, .side_link_login, .side_link_logout{
+.side_link_booking, .side_link_login, .side_link_logout, .side_link_history, .side_link_member{
     cursor: pointer;
 }
 
-.side_link_booking:hover, .side_link_login:hover, .side_link_logout:hover{
+.side_link_booking:hover, .side_link_login:hover, .side_link_logout:hover, .side_link_history:hover, .side_link_member:hover{
     color: #91d8ea;
 }
 

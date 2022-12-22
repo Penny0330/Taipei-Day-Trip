@@ -6,6 +6,7 @@ from api.auth import auth
 from api.booking import booking
 from api.order import order
 from api.historyOrder import historyOrder
+from api.member import memberShip
 
 app = Flask(__name__,
             static_folder="static",
@@ -23,6 +24,7 @@ app.register_blueprint(auth)
 app.register_blueprint(booking)
 app.register_blueprint(order)
 app.register_blueprint(historyOrder)
+app.register_blueprint(memberShip)
 
 # Pages
 
@@ -50,6 +52,11 @@ def thankyou():
 @app.route("/history")
 def history():
     return render_template("history.html")
+
+
+@app.route("/member")
+def member():
+    return render_template("member.html")
 
 
 app.run(host="0.0.0.0", port=3000, debug=True)

@@ -94,6 +94,7 @@ let loader_text = document.querySelector(".loader_text");
 function getAttraction(result){
     const get_data = result.data;
     let finishImg = 0;
+    loader.style.display = "flex";
 
     for(let i = 0; i < get_data.length; i++){
 

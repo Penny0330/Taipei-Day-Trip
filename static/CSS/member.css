@@ -1,0 +1,75 @@
+:root {
+    --white: #fff;
+    --green: #448899;
+    --light_green: rgba(68, 136, 153, 0.5);
+    --deep_gray: #666666;
+    --light_gray: #757575;
+}
+
+#root{
+    display: grid;
+    grid-template-rows: 54px auto;
+    position: relative;
+}
+
+.member{
+    display: grid;
+    gap: 45px;
+    grid-template-columns: minmax(300px, 1200px);
+    justify-content: center;
+    margin: 50px 14% 50vh;
+
+}
+
+.member_title{
+    color: var(--deep_gray);
+    font-size: 24px;
+
+    border-bottom:  1px solid var(--deep_gray);
+}
+
+.change_name, .change_password{
+    display: grid;
+    gap: 15px;
+    justify-self: start;
+}
+
+.change_name{
+    border-bottom: 1px solid #E8E8E8;
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+.title{
+    font-size: 19px;
+    color: var(--deep_gray);
+}
+
+.change_name_button, .change_password_button{
+    background-color: var(--green);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    padding: 8px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#new_name, #old_password, #new_password, #renew_password{
+    width: 280px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: 1px solid var(--deep_gray);
+    outline: none;
+    letter-spacing: 2px;
+}
+
+.change_name_message, .change_password_message{
+    color: rgba(204, 92, 92, 0.9);
+    width: 250px;
+    height: 20px;
+}
+
+
+

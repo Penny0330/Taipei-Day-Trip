@@ -12,8 +12,12 @@ side_logo.addEventListener("click", ()=>{
 });
 
 // ----- check status -----
+const link = document.querySelector(".link");
 const top_link_logout = document.querySelector(".top_link_logout");
 const top_link_login = document.querySelector(".top_link_login");
+const top_link_member_history = document.querySelector(".top_link_member_history");
+const side_link_history = document.querySelector(".side_link_history");
+const side_link_member = document.querySelector(".side_link_member");
 let top_name = document.querySelector(".top_name");
 
 let isLogin = false;
@@ -41,11 +45,22 @@ function topLinkChange(res){
     top_link_login.style.display = "none";
     top_link_logout.style.display = "block";
     top_name.innerHTML = `${res.data.name}，您好`;
+
+    top_name.addEventListener("mouseover", (e)=>{
+        top_link_member_history.style.display = "flex";
+    });
+
+   link.addEventListener("mouseleave", ()=>{
+        top_link_member_history.style.display = "none";
+    });
+ 
     
     side_link_login.style.display = "none";
+    side_link_history.style.display = "block";
+    side_link_member.style.display = "block";
     side_link_logout.innerHTML = "登出系統";
     side_name.innerHTML = `${res.data.name}，您好`;
-}
+};
 
 
 
@@ -421,22 +436,24 @@ side_link_booking.addEventListener("click", ()=>{
 
 // ---- nav link history -----
 
-top_name.addEventListener("click", ()=>{
-    if(isLogin){
-        document.location.href="/history";
-    }else{
-        signIn.style.display = "block";
-        signIn.classList.add("appear");
-        overlay.style.display = "block";
-    }
-});
+// top_name.addEventListener("click", ()=>{
+//     if(isLogin){
+//         document.location.href="/history";
+//     }else{
+//         signIn.style.display = "block";
+//         signIn.classList.add("appear");
+//         overlay.style.display = "block";
+//     }
+// });
 
-side_name.addEventListener("click", ()=>{
-    if(isLogin){
-        document.location.href="/history";
-    }else{
-        signIn.style.display = "block";
-        signIn.classList.add("appear");
-        overlay.style.display = "block";
-    }
-});
+// side_link_history.addEventListener("click", ()=>{
+//     if(isLogin){
+//         document.location.href="/history";
+//         side_link_history.classList.remove("disappear");
+//         side_link_member.classList.remove("disappear");
+//     }else{
+//         signIn.style.display = "block";
+//         signIn.classList.add("appear");
+//         overlay.style.display = "block";
+//     }
+// });
