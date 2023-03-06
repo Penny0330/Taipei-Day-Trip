@@ -1,10 +1,11 @@
 # [Taipei-Day-Trip](http://54.92.74.234:3000/)
 
   Taipei-Day-Trip is an e-commerce website which allows you to discover special attractions and make one-day attraction booking in Taipei   City.
+  
+  ![image](https://user-images.githubusercontent.com/110281590/223017312-f14c859e-b7e4-4e46-a963-7535113238d9.png)
 
 # Demo
-* **Website URL** : 
-  * [Taipei-Day-Trip](http://54.92.74.234:3000/)
+* **Website URL** : [Taipei-Day-Trip](http://54.92.74.234:3000/)
 * **Test Account** : 
 
   |-|-|
@@ -25,13 +26,12 @@
 - [Frontend Technique](https://github.com/Penny0330/Taipei-Day-Trip#frontend-technique)
 - [Backend Technique](https://github.com/Penny0330/Taipei-Day-Trip#backend-technique)
 - [Features](https://github.com/Penny0330/Taipei-Day-Trip#features)
-    - [1. Infinite Scroll](https://github.com/Penny0330/Taipei-Day-Trip#features)
-    - [2. Keyword Search](https://github.com/Penny0330/Taipei-Day-Trip#keyword-search)
-    - [3. Image Carousel](https://github.com/Penny0330/Taipei-Day-Trip#features)
-    - [4. online payment](https://github.com/Penny0330/Taipei-Day-Trip#features)
-    - [5. Member Center](https://github.com/Penny0330/Taipei-Day-Trip#features)
-- [Extra Optimization]()
-- [Contact]()
+    - [1. Infinite Scroll](https://github.com/Penny0330/Taipei-Day-Trip#-infinite-scroll)
+    - [2. Keyword Search](https://github.com/Penny0330/Taipei-Day-Trip#-keyword-search)
+    - [3. Image Carousel](https://github.com/Penny0330/Taipei-Day-Trip#-image-carousel)
+    - [4. online payment](https://github.com/Penny0330/Taipei-Day-Trip#-third-party-online-payment---tappay)
+    - [5. Member Center](https://github.com/Penny0330/Taipei-Day-Trip#-member-center)
+- [Contact](https://github.com/Penny0330/Taipei-Day-Trip#contact)
 
 ## Architecture
 ![Architecture](https://user-images.githubusercontent.com/110281590/211182525-2725fb16-4c5d-42fc-9c8f-a8edf97a0e8a.png)
